@@ -1,16 +1,14 @@
 package:
   name: catboost
-  version: "0.8.1"
+  version: "0.9.1.1"
 
 build:
-  number: 0
+  number: 1
   #  Yandex supplies whl files on PyPI for:
-  # - Linux: Python 2.7, 3.4, 3.5 and 3.6
-  # - OS X: Python 2.7, 3.4, 3.5 and 3.6
-  # - Win-64: Python 2.7, 3.4, 3.5 and 3.6
+  # - Linux: Python 2.7, 3.4, 3.5, 3.6
+  # - OS X: Python 2.7, 3.4, 3.5, 3.6
+  # - Win-64: Python 2.7, 3.4, 3.5, 3.6
   skip: True  # [win32]
-  skip: True  # [py26]
-  skip: True  # [py33]
 
 requirements:
   build:
@@ -20,6 +18,7 @@ requirements:
     - python
     - numpy
     - six
+    - enum34  # [py27]
 
 test:
   imports:
@@ -41,3 +40,5 @@ about:
 extra:
   recipe-maintainers:
     - sab
+    - kizill
+    - nikitxskv
