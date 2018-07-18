@@ -20,6 +20,8 @@ requirements:
     - python
     - numpy
     - six
+    - pandas
+    - enum34
 
 test:
   imports:
