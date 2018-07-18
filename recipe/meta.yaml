@@ -3,14 +3,12 @@ package:
   version: "0.9.1.1"
 
 build:
-  number: 0
+  number: 1
   #  Yandex supplies whl files on PyPI for:
-  # - Linux: Python 2.7, 3.4, 3.5, 3.6 and 3.7
-  # - OS X: Python 2.7, 3.4, 3.5, 3.6 and 3.7
-  # - Win-64: Python 2.7, 3.4, 3.5, 3.6 and 3.7
+  # - Linux: Python 2.7, 3.4, 3.5, 3.6
+  # - OS X: Python 2.7, 3.4, 3.5, 3.6
+  # - Win-64: Python 2.7, 3.4, 3.5, 3.6
   skip: True  # [win32]
-  skip: True  # [py26]
-  skip: True  # [py33]
 
 requirements:
   build:
@@ -20,7 +18,7 @@ requirements:
     - python
     - numpy
     - six
-    - enum34
+    - enum34  # [py27]
 
 test:
   imports:
