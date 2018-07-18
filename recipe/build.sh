@@ -11,8 +11,6 @@ if [ `uname` == Darwin ]; then
         WHL_FILE=https://pypi.org/packages/cp35/c/catboost/catboost-${PKG_VERSION}-cp35-none-macosx_10_6_intel.macosx_10_9_intel.macosx_10_9_x86_64.macosx_10_10_intel.macosx_10_10_x86_64.whl
     elif [ "$PY_VER" == "3.6" ]; then
         WHL_FILE=https://pypi.org/packages/cp36/c/catboost/catboost-${PKG_VERSION}-cp36-none-macosx_10_6_intel.macosx_10_9_intel.macosx_10_9_x86_64.macosx_10_10_intel.macosx_10_10_x86_64.whl
-    elif [ "$PY_VER" == "3.7" ]; then
-        WHL_FILE=https://pypi.org/packages/cp37/c/catboost/catboost-${PKG_VERSION}-cp37-none-macosx_10_6_intel.macosx_10_9_intel.macosx_10_9_x86_64.macosx_10_10_intel.macosx_10_10_x86_64.whl
     fi
 fi
 
@@ -25,8 +23,6 @@ if [ `uname` == Linux ]; then
         WHL_FILE=https://pypi.org/packages/cp35/c/catboost/catboost-${PKG_VERSION}-cp35-none-manylinux1_x86_64.whl
     elif [ "$PY_VER" == "3.6" ]; then
         WHL_FILE=https://pypi.org/packages/cp36/c/catboost/catboost-${PKG_VERSION}-cp36-none-manylinux1_x86_64.whl
-    elif [ "$PY_VER" == "3.7" ]; then
-        WHL_FILE=https://pypi.org/packages/cp37/c/catboost/catboost-${PKG_VERSION}-cp37-none-manylinux1_x86_64.whl
     fi
 fi
 
