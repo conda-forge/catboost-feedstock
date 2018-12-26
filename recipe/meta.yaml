@@ -16,9 +16,10 @@ requirements:
     - pip
   run:
     - python
-    - numpy
-    - six
     - enum34  # [py27]
+    - numpy
+    - pandas
+    - six
 
 test:
   imports:
