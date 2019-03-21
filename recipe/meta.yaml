@@ -1,6 +1,6 @@
 package:
   name: catboost
-  version: "0.13"
+  version: "0.13.1"
 
 build:
   number: 0
