@@ -3,7 +3,7 @@ package:
   version: "0.15"
 
 build:
-  number: 0
+  number: 1
   #  Yandex supplies whl files on PyPI for:
   # - Linux: Python 2.7, 3.5, 3.6, 3.7
   # - OS X: Python 2.7, 3.5, 3.6, 3.7
@@ -26,7 +26,7 @@ test:
     - catboost
 
 about:
-  home: http://catboost.yandex
+  home: http://catboost.ai
   license: Apache 2.0
   license_family: MIT
   license_url: https://github.com/catboost/catboost/blob/master/LICENSE
