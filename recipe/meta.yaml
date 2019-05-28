@@ -35,7 +35,7 @@ about:
   description: |
     General purpose gradient boosting on decision trees library with categorical features support out of the box.
     It is easy to install, contains fast inference implementation and supports CPU and GPU (even multi-GPU) computation.
-  doc_url: https://tech.yandex.com/catboost/doc/dg/concepts/about-docpage/
+  doc_url: https://catboost.ai/docs/concepts/about.html
   dev_url: https://github.com/catboost/catboost
 
 extra:
