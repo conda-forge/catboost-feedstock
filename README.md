@@ -1,7 +1,7 @@
 About catboost
 ==============
 
-Home: http://catboost.yandex
+Home: http://catboost.ai
 
 Package license: Apache 2.0
 
