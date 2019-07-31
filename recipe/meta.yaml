@@ -3,7 +3,7 @@ package:
   version: "0.16.1"
 
 build:
-  number: 0
+  number: 1
   #  Yandex supplies whl files on PyPI for:
   # - Linux: Python 2.7, 3.5, 3.6, 3.7
   # - OS X: Python 2.7, 3.5, 3.6, 3.7
@@ -17,8 +17,8 @@ requirements:
   run:
     - python
     - enum34  # [py27]
-    - numpy
-    - pandas
+    - numpy >=1.16.0
+    - pandas >=0.19.1
     - six
 
 test:
@@ -29,7 +29,7 @@ about:
   home: http://catboost.ai
   license: Apache 2.0
   license_family: MIT
-  license_url: https://github.com/catboost/catboost/blob/master/LICENSE
+  license_file: LICENSE
   summary: 'Gradient boosting on decision trees library'
 
   description: |
