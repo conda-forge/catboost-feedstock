@@ -28,9 +28,8 @@ test:
 
 about:
   home: http://catboost.ai
-  license: Apache 2.0
+  license: Apache-2.0
   license_family: MIT
-  license_file:
   license_url: https://github.com/catboost/catboost/blob/master/LICENSE
   summary: 'Gradient boosting on decision trees library'
 
