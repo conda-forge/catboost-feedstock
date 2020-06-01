@@ -12,7 +12,7 @@ source:
 
 build:
   number: 2
-  skip: True  # [win32 or python_impl == 'pypy']
+  skip: True  # [win32 or python_impl == 'pypy' or py2k]
 
 requirements:
   build:
@@ -23,6 +23,7 @@ requirements:
     - python
     - pip
     - numpy
+    - pandas >=0.24.0
     - six
   run:
     - python
