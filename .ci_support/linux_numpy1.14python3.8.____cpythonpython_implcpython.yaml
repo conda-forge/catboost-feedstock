@@ -1,13 +1,19 @@
-MACOSX_DEPLOYMENT_TARGET:
-- '10.9'
+c_compiler:
+- gcc
+c_compiler_version:
+- '7'
 channel_sources:
 - conda-forge,defaults
 channel_targets:
 - conda-forge main
-macos_machine:
-- x86_64-apple-darwin13.4.0
-macos_min_version:
-- '10.9'
+cxx_compiler:
+- gxx
+cxx_compiler_version:
+- '7'
+docker_image:
+- condaforge/linux-anvil-comp7
+numpy:
+- '1.14'
 pin_run_as_build:
   python:
     min_pin: x.x
@@ -17,5 +23,6 @@ python:
 python_impl:
 - cpython
 zip_keys:
-- - python
+- - numpy
+  - python
   - python_impl
