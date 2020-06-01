@@ -32,6 +32,8 @@ requirements:
     - six
     - plotly
     - graphviz
+    - scipy
+    - matplotlib-base
 
 test:
   imports:
