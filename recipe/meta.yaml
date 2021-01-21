@@ -11,7 +11,7 @@ build:
   skip: True  # [win32 or python_impl == 'pypy']
 
 requirements:
-  build:
+  host:
     - python
     - pip
   run:
