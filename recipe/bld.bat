@@ -18,4 +18,8 @@ IF "%PY_VER%"=="3.8" (
 	%PYTHON% -m pip install --no-deps https://pypi.org/packages/cp38/c/catboost/catboost-%PKG_VERSION%-cp38-none-win_amd64.whl
 )
 
+IF "%PY_VER%"=="3.9" (
+	%PYTHON% -m pip install --no-deps https://pypi.org/packages/cp39/c/catboost/catboost-%PKG_VERSION%-cp39-none-win_amd64.whl
+)
+
 if errorlevel 1 exit 1
