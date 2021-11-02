@@ -5,9 +5,9 @@ package:
 build:
   number: 0
   #  Yandex supplies whl files on PyPI for:
-  # - Linux: Python 2.7, 3.5, 3.6, 3.7, 3.8, 3.9
-  # - OS X: Python 2.7, 3.5, 3.6, 3.7, 3.8, 3.9
-  # - Win-64: Python 2.7, 3.5, 3.6, 3.7, 3.8, 3.9
+  # - Linux: Python 2.7, 3.5, 3.6, 3.7, 3.8, 3.9, 3.10
+  # - OS X: Python 2.7, 3.5, 3.6, 3.7, 3.8, 3.9, 3.10
+  # - Win-64: Python 2.7, 3.5, 3.6, 3.7, 3.8, 3.9, 3.10
   skip: True  # [win32 or python_impl == 'pypy']
 
 requirements:
