@@ -22,7 +22,7 @@ requirements:
     - scipy
     - six
     - plotly
-    - matplotlib
+    - matplotlib-base
     - python-graphviz
     #python-graphviz avoids the pip check error
     
