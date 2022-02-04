@@ -3,7 +3,7 @@ package:
   version: "1.0.4"
 
 build:
-  number: 2
+  number: 3
   #  Yandex supplies whl files on PyPI for:
   # - Linux: Python 3.6, 3.7, 3.8, 3.9, 3.10
   # - OS X: Python 3.6, 3.7, 3.8, 3.9, 3.10
@@ -21,12 +21,19 @@ requirements:
     - pandas >=0.24.0
     - scipy
     - six
-    - graphviz
     - plotly
+    - matplotlib-base
+    - python-graphviz
+    #python-graphviz avoids the pip check error
+    
 
 test:
   imports:
     - catboost
+  commands:
+    - pip check
+  requires:
+    - pip
 
 about:
   home: http://catboost.ai
