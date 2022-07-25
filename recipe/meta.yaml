@@ -3,7 +3,7 @@ package:
   version: "1.0.6"
 
 build:
-  number: 1
+  number: 2
   #  Yandex supplies whl files on PyPI for:
   # - Linux: Python 3.6, 3.7, 3.8, 3.9, 3.10
   # - OS X: Python 3.6, 3.7, 3.8, 3.9, 3.10
@@ -15,11 +15,11 @@ requirements:
     - python
     - pip
   run:
-    - python
+    - python          # [build_platform != target_platform]
     - enum34  # [py27]
-    - numpy >=1.16.0
-    - pandas >=0.24.0
-    - scipy
+    - numpy >=1.16.0  # [build_platform != target_platform]
+    - pandas >=0.24.0 # [build_platform != target_platform]
+    - scipy           # [build_platform != target_platform]
     - six
     - plotly
     - matplotlib-base
