@@ -15,10 +15,10 @@ requirements:
     - python
     - pip
   run:
-    - python  # [build_platform != target_platform]
-    - numpy >=1.16.0  # [build_platform != target_platform]
-    - pandas >=0.24.0  # [build_platform != target_platform]
-    - scipy  # [build_platform != target_platform]
+    - python
+    - numpy >=1.16.0
+    - pandas >=0.24.0
+    - scipy
     - six
     - plotly
     - matplotlib-base
