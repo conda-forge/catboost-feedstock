@@ -15,17 +15,16 @@ requirements:
     - python
     - pip
   run:
-    - python          # [build_platform != target_platform]
-    - enum34  # [py27]
+    - python  # [build_platform != target_platform]
     - numpy >=1.16.0  # [build_platform != target_platform]
-    - pandas >=0.24.0 # [build_platform != target_platform]
-    - scipy           # [build_platform != target_platform]
+    - pandas >=0.24.0  # [build_platform != target_platform]
+    - scipy  # [build_platform != target_platform]
     - six
     - plotly
     - matplotlib-base
     - python-graphviz
     #python-graphviz avoids the pip check error
-    
+
 
 test:
   imports:
