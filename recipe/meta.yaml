@@ -3,7 +3,7 @@ package:
   version: "1.1.1"
 
 build:
-  number: 0
+  number: 1
   #  Yandex supplies whl files on PyPI for:
   # - Linux: Python 3.6, 3.7, 3.8, 3.9, 3.10
   # - OS X: Python 3.6, 3.7, 3.8, 3.9, 3.10
