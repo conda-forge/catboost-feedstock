@@ -38,4 +38,4 @@ if [ `uname` == Linux ]; then
     fi
 fi
 
-{PYTHON} -m pip install --no-deps $WHL_FILE
+$PYTHON -m pip install --no-deps $WHL_FILE
