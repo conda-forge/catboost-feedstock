@@ -5,9 +5,9 @@ package:
 build:
   number: 2
   #  Yandex supplies whl files on PyPI for:
-  # - Linux: Python 3.6, 3.7, 3.8, 3.9, 3.10
-  # - OS X: Python 3.6, 3.7, 3.8, 3.9, 3.10
-  # - Win-64: Python 3.6, 3.7, 3.8, 3.9, 3.10
+  # - Linux: Python 3.7, 3.8, 3.9, 3.10, 3.11
+  # - OS X: Python 3.7, 3.8, 3.9, 3.10, 3.11
+  # - Win-64: Python 3.7, 3.8, 3.9, 3.10, 3.11
   skip: True  # [win32 or python_impl == 'pypy']
 
 requirements:
@@ -30,7 +30,7 @@ requirements:
     - matplotlib-base
     - python-graphviz
     #python-graphviz avoids the pip check error
-    
+
 
 test:
   imports:

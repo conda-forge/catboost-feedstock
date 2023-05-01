@@ -1,8 +1,4 @@
 
-IF "%PY_VER%"=="3.6" (
-	%PYTHON% -m pip install --no-deps https://pypi.org/packages/cp36/c/catboost/catboost-%PKG_VERSION%-cp36-cp36-win_amd64.whl
-)
-
 IF "%PY_VER%"=="3.7" (
 	%PYTHON% -m pip install --no-deps https://pypi.org/packages/cp37/c/catboost/catboost-%PKG_VERSION%-cp37-cp37m-win_amd64.whl
 )
@@ -17,6 +13,10 @@ IF "%PY_VER%"=="3.9" (
 
 IF "%PY_VER%"=="3.10" (
 	%PYTHON% -m pip install --no-deps https://pypi.org/packages/cp310/c/catboost/catboost-%PKG_VERSION%-cp310-cp310-win_amd64.whl
+)
+
+IF "%PY_VER%"=="3.11" (
+	%PYTHON% -m pip install --no-deps https://pypi.org/packages/cp311/c/catboost/catboost-%PKG_VERSION%-cp311-cp311-win_amd64.whl
 )
 
 if errorlevel 1 exit 1
