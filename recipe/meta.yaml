@@ -1,14 +1,17 @@
 package:
   name: catboost
-  version: "1.1.1"
+  version: "1.2"
 
 build:
-  number: 2
+  number: 1
   #  Yandex supplies whl files on PyPI for:
-  # - Linux: Python 3.6, 3.7, 3.8, 3.9, 3.10
-  # - OS X: Python 3.6, 3.7, 3.8, 3.9, 3.10
-  # - Win-64: Python 3.6, 3.7, 3.8, 3.9, 3.10
-  skip: True  # [win32 or python_impl == 'pypy']
+  # - Linux: Python 3.7, 3.8, 3.9, 3.10, 3.11
+  # - OS X: Python 3.7, 3.8, 3.9, 3.10, 3.11
+  # - Win-64: Python 3.7, 3.8, 3.9, 3.10, 3.11
+  # There are issues with python 3.8 on macOS 11.x: https://github.com/conda-forge/python-feedstock/issues/445 
+  #  so Conda has issues with tags compatibility with platform tags 'macosx_11_0_...'
+  #  so disable this configuration for now
+  skip: True  # [win32 or python_impl == 'pypy' or (osx and x86_64 and (py == 38))]
 
 requirements:
   build:
@@ -30,7 +33,7 @@ requirements:
     - matplotlib-base
     - python-graphviz
     #python-graphviz avoids the pip check error
-    
+
 
 test:
   imports:
