@@ -26,7 +26,6 @@ requirements:
     - pip
   run:
     - python
-    - enum34  # [py27]
     - numpy >=1.16.0
     - pandas >=0.24.0
     - scipy
