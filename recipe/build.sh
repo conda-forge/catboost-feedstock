@@ -17,9 +17,9 @@ if [ `uname` == Darwin ]; then
 fi
 
 if [ `uname` == Linux ]; then
-    if [ "$PLATFORM" == "linux-aarch64" ]; then
+    if [ "$target_platform" == "linux-aarch64" ]; then
         TARGET_ARCH=aarch64
-    elif [ "$PLATFORM" == "linux-x86_64" ]; then
+    elif [ "$target_platform" == "linux-64" ]; then
         TARGET_ARCH=x86_64
     fi
 
