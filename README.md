@@ -1,11 +1,11 @@
-About catboost
-==============
+About catboost-feedstock
+========================
+
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/catboost-feedstock/blob/main/LICENSE.txt)
 
 Home: http://catboost.ai
 
 Package license: [Apache-2.0](https://github.com/catboost/catboost/blob/master/LICENSE)
-
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/catboost-feedstock/blob/main/LICENSE.txt)
 
 Summary: Gradient boosting on decision trees library
 
