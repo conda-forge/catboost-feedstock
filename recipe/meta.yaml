@@ -1,9 +1,9 @@
 package:
   name: catboost
-  version: "1.2"
+  version: "1.2.1"
 
 build:
-  number: 4
+  number: 0
   #  Yandex supplies whl files on PyPI for:
   # - Linux: Python 3.7, 3.8, 3.9, 3.10, 3.11
   # - OS X: Python 3.7, 3.8, 3.9, 3.10, 3.11
