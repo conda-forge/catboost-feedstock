@@ -1,13 +1,13 @@
 package:
   name: catboost
-  version: "1.2.2"
+  version: "1.2.3"
 
 build:
   number: 0
   #  Yandex supplies whl files on PyPI for:
-  # - Linux: Python 3.7, 3.8, 3.9, 3.10, 3.11
-  # - OS X: Python 3.7, 3.8, 3.9, 3.10, 3.11
-  # - Win-64: Python 3.7, 3.8, 3.9, 3.10, 3.11
+  # - Linux: Python 3.7, 3.8, 3.9, 3.10, 3.11, 3.12
+  # - OS X: Python 3.7, 3.8, 3.9, 3.10, 3.11, 3.12
+  # - Win-64: Python 3.7, 3.8, 3.9, 3.10, 3.11, 3.12
   skip: True  # [win32]
   skip: True  # [python_impl == 'pypy']
   # There are issues with python 3.8 on macOS 11.x: https://github.com/conda-forge/python-feedstock/issues/445
