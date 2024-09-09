@@ -1,0 +1,145 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 07109e80c8..217876398a 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -17,6 +17,18 @@
+ cmake_minimum_required(VERSION 3.15)
+ project(CATBOOST LANGUAGES C CXX ASM)
+ 
++# Patch to use system provided OpenSSL instead of vcpkg
++find_package(OpenSSL REQUIRED)
++include_directories(${OPENSSL_INCLUDE_DIR})
++add_library(LinkOpenSSL INTERFACE)
++target_link_libraries(LinkOpenSSL INTERFACE OpenSSL::SSL OpenSSL::Crypto)
++add_library(OpenSSL::OpenSSL ALIAS LinkOpenSSL)
++
++link_libraries("-ldl")
++link_libraries("-lpthread")
++link_libraries("-lc")
++link_libraries("-lm")
++
+ set(BUILD_SHARED_LIBS Off)
+ set(CMAKE_CXX_STANDARD 20)
+ set(CMAKE_CXX_EXTENSIONS Off)
+@@ -37,7 +49,7 @@ include(cmake/global_flags.cmake)
+ include(cmake/global_vars.cmake)
+ include(cmake/archive.cmake)
+ include(cmake/common.cmake)
+-include(cmake/conan.cmake)
++#include(cmake/conan.cmake)
+ include(cmake/cuda.cmake)
+ include(cmake/cython.cmake)
+ include(cmake/fbs.cmake)
+@@ -46,21 +58,6 @@ include(cmake/recursive_library.cmake)
+ include(cmake/shared_libs.cmake)
+ include(cmake/swig.cmake)
+ 
+-if (CMAKE_CROSSCOMPILING)
+-  include(${PROJECT_BINARY_DIR}/conan_paths.cmake)
+-else()
+-  conan_cmake_autodetect(settings)
+-  conan_cmake_install(
+-    PATH_OR_REFERENCE ${PROJECT_SOURCE_DIR}
+-    INSTALL_FOLDER ${PROJECT_BINARY_DIR}
+-    BUILD missing
+-    REMOTE conancenter
+-    SETTINGS ${settings}
+-      ENV "CONAN_CMAKE_GENERATOR=${CMAKE_GENERATOR}"
+-      CONF "tools.cmake.cmaketoolchain:generator=${CMAKE_GENERATOR}"
+-  )
+-endif()
+-
+ if (CMAKE_SYSTEM_NAME STREQUAL "Linux" AND CMAKE_SYSTEM_PROCESSOR STREQUAL "x86_64" AND NOT HAVE_CUDA)
+   include(CMakeLists.linux-x86_64.txt)
+ elseif (CMAKE_SYSTEM_NAME STREQUAL "Linux" AND CMAKE_SYSTEM_PROCESSOR STREQUAL "x86_64" AND HAVE_CUDA)
+diff --git a/catboost/private/libs/algo/CMakeLists.txt b/catboost/private/libs/algo/CMakeLists.txt
+index 80d8f97ad0..e52a3aa2d9 100644
+--- a/catboost/private/libs/algo/CMakeLists.txt
++++ b/catboost/private/libs/algo/CMakeLists.txt
+@@ -34,3 +34,8 @@ elseif (WIN32 AND CMAKE_SYSTEM_PROCESSOR STREQUAL "AMD64" AND NOT HAVE_CUDA)
+ elseif (WIN32 AND CMAKE_SYSTEM_PROCESSOR STREQUAL "AMD64" AND HAVE_CUDA)
+   include(CMakeLists.windows-x86_64-cuda.txt)
+ endif()
++
++target_link_libraries(private-libs-algo PUBLIC
++  cpp-malloc-tcmalloc
++  libs-model-model_export
++)
+diff --git a/catboost/python-package/mk_wheel.py b/catboost/python-package/mk_wheel.py
+index ea35201f20..0c0df8207e 100644
+--- a/catboost/python-package/mk_wheel.py
++++ b/catboost/python-package/mk_wheel.py
+@@ -52,7 +52,7 @@ class PythonTrait(object):
+ 
+     def gen_cmd(self, arc_path, module_name, task_type):
+         if self.build_system == BUILD_SYSTEM.CMAKE:
+-            cmd = ([
++            cmd2 = ([
+                 'cd', arc_root,
+                 'cmake',
+                 '-B', self.out_root,
+@@ -62,10 +62,11 @@ class PythonTrait(object):
+                 '-DCMAKE_POSITION_INDEPENDENT_CODE=On'
+             ] + self.tail_args + [
+                 '&&'
+-                'cd', self.tmp_build_dir,
++                'cd', #self.tmp_build_dir,
+                 '&&',
+                 'make', module_name
+             ])
++            cmd = ["echo", "hello"]
+         elif self.build_system == BUILD_SYSTEM.YA:
+             cmd = [
+                 sys.executable, arc_root + '/ya', 'make', os.path.join(arc_root, arc_path),
+@@ -328,8 +329,8 @@ def make_wheel(wheel_name, pkg_name, ver, build_system, arc_root, dst_so_modules
+ 
+ def build_widget(arc_root):
+     js_dir = os.path.join(arc_root, 'catboost', 'python-package', 'catboost', 'widget', 'js')
+-    subprocess.check_call('"{}" -m pip install -U jupyterlab'.format(sys.executable), shell=True, cwd=js_dir)
+-    subprocess.check_call('yarn clean', shell=True, cwd=js_dir)
++    # subprocess.check_call('"{}" -m pip install -U jupyterlab'.format(sys.executable), shell=True, cwd=js_dir)
++    # subprocess.check_call('yarn clean', shell=True, cwd=js_dir)
+     subprocess.check_call('yarn install', shell=True, cwd=js_dir)
+     subprocess.check_call('yarn build', shell=True, cwd=js_dir)
+     # workaround for https://github.com/yarnpkg/yarn/issues/6685
+@@ -361,7 +362,7 @@ def build(build_system, arc_root, out_root, tail_args, should_build_widget, shou
+                 print('Build {} native library: OK'.format(module_name), file=sys.stderr)
+                 src = os.path.join(py_trait.out_root, arc_path, py_trait.built_so_name(module_name))
+                 dst = '.'.join([src, task_type])
+-                shutil.move(src, dst)
++                shutil.copy(src, dst)
+                 dst_so_modules[module_name] = (dst, dst_subdir)
+ 
+             print('Build {} version: OK'.format(task_type), file=sys.stderr)
+@@ -379,6 +380,7 @@ def build(build_system, arc_root, out_root, tail_args, should_build_widget, shou
+ if __name__ == '__main__':
+     arc_root = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..'))
+     with tempfile.TemporaryDirectory() as out_root:
++        out_root = arc_root
+         args_parser = ArgumentParser()
+         args_parser.add_argument('--build-with-cuda', choices=['yes', 'no'], default='yes')
+         args_parser.add_argument('--build-widget', choices=['yes', 'no'], default='yes')
+diff --git a/contrib/libs/clapack/part2/CMakeLists.txt b/contrib/libs/clapack/part2/CMakeLists.txt
+index 1c39c56e27..8ae18e1c14 100644
+--- a/contrib/libs/clapack/part2/CMakeLists.txt
++++ b/contrib/libs/clapack/part2/CMakeLists.txt
+@@ -42,3 +42,7 @@ elseif (ANDROID AND CMAKE_ANDROID_ARCH STREQUAL "x86")
+ elseif (ANDROID AND CMAKE_ANDROID_ARCH STREQUAL "x86_64")
+   include(CMakeLists.android-x86_64.txt)
+ endif()
++
++target_link_libraries(libs-clapack-part2 PUBLIC
++  libs-clapack-part1
++)
+diff --git a/contrib/libs/cxxsupp/libcxxrt/CMakeLists.txt b/contrib/libs/cxxsupp/libcxxrt/CMakeLists.txt
+index f1fa191f3f..e0d3796979 100644
+--- a/contrib/libs/cxxsupp/libcxxrt/CMakeLists.txt
++++ b/contrib/libs/cxxsupp/libcxxrt/CMakeLists.txt
+@@ -30,3 +30,7 @@ elseif (CMAKE_SYSTEM_NAME STREQUAL "Darwin" AND CMAKE_SYSTEM_PROCESSOR STREQUAL
+ elseif (CMAKE_SYSTEM_NAME STREQUAL "Darwin" AND CMAKE_SYSTEM_PROCESSOR STREQUAL "arm64")
+   include(CMakeLists.darwin-arm64.txt)
+ endif()
++
++target_link_libraries(libs-cxxsupp-libcxxrt PUBLIC
++  libs-cxxsupp-libcxxabi-parts
++)
