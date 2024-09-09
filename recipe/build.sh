@@ -7,5 +7,8 @@ cmake ${CMAKE_ARGS} \
   -DCATBOOST_COMPONENTS="PYTHON-PACKAGE" \
   .
 
-ninja -j${CPU_COUNT}
-ninja install
+ninja -j${CPU_COUNT} _catboost _hnsw
+
+cd catboost/python-package/
+$PYTHON mk_wheel.py --build-with-cuda=no
+$PYTHON -m pip install catboost-*.whl
