@@ -30,6 +30,7 @@ requirements:
     - yasm                        # [unix]
     - swig                        # [unix]
     - cmake                       # [unix]
+    - make                        # [unix]
     - ninja                       # [unix]
     - {{ compiler('clangxx') }}   # [linux]
     - {{ compiler('cxx') }}       # [osx]
