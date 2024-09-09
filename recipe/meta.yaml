@@ -2,6 +2,10 @@ package:
   name: catboost
   version: "1.2.5"
 
+source:
+  url: https://github.com/catboost/catboost/archive/refs/tags/v{{ version }}.tar.gz
+  sha256: aee305b5d6526c5ce0b3500056af85decb00338a8dd18f59b17a3251f628796c
+
 build:
   number: 0
   #  Yandex supplies whl files on PyPI for:
@@ -10,10 +14,6 @@ build:
   # - Win-64: Python 3.7, 3.8, 3.9, 3.10, 3.11, 3.12
   skip: True  # [win32]
   skip: True  # [python_impl == 'pypy']
-  # There are issues with python 3.8 on macOS 11.x: https://github.com/conda-forge/python-feedstock/issues/445
-  #  so Conda has issues with tags compatibility with platform tags 'macosx_11_0_...'
-  #  so disable this configuration for now
-  skip: True  # [osx and x86_64 and (py == 38)]
   # TODO: support Linux on ppc64le: https://github.com/catboost/catboost/issues/2145
   skip: True  # [ppc64le]
 
@@ -25,7 +25,17 @@ requirements:
     - cross-python_{{ target_platform }}     # [build_platform != target_platform]
     - cython                                 # [build_platform != target_platform]
     - numpy  >=1.16.0                        # [build_platform != target_platform]
+    - ragel                       # [unix]
+    - yasm                        # [unix]
+    - swig                        # [unix]
+    - cmake                       # [unix]
+    - ninja                       # [unix]
+    - {{ compiler('clangxx') }}   # [linux]
+    - {{ compiler('cxx') }}       # [osx]
+    - {{ stdlib('c') }}           # [unix]
+    - lld                         # [unix]
   host:
+    - openssl                     # [unix]
     - python
     - pip
   run:
