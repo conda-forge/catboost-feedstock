@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://github.com/catboost/catboost/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: aee305b5d6526c5ce0b3500056af85decb00338a8dd18f59b17a3251f628796c
+  sha256: 099ff437993621b86565f3b25150071bdc20623ff77b75ed4d0cf6a37263e1fd
   patches:
     - conda.diff
 
