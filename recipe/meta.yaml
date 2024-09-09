@@ -1,6 +1,8 @@
+{% set version = "1.2.5" %}
+
 package:
   name: catboost
-  version: "1.2.5"
+  version: {{ version }}
 
 source:
   url: https://github.com/catboost/catboost/archive/refs/tags/v{{ version }}.tar.gz
