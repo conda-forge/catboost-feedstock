@@ -1,4 +1,4 @@
-{% set version = "1.2.5" %}
+{% set version = "1.2.7" %}
 
 package:
   name: catboost
@@ -11,7 +11,7 @@ source:
     - conda.diff
 
 build:
-  number: 0
+  number: 1
   #  Yandex supplies whl files on PyPI for:
   # - Linux: Python 3.7, 3.8, 3.9, 3.10, 3.11, 3.12
   # - OS X: Python 3.7, 3.8, 3.9, 3.10, 3.11, 3.12
@@ -43,7 +43,7 @@ requirements:
     - pip
   run:
     - python
-    - numpy >=1.16.0
+    - numpy >=1.16.0,<2
     - pandas >=0.24.0
     - scipy
     - six

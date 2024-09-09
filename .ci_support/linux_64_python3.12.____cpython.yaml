@@ -1,7 +1,10 @@
+<<<<<<< HEAD
 c_stdlib:
 - sysroot
 c_stdlib_version:
 - '2.17'
+=======
+>>>>>>> 1d91dd0c3bb57236aca40df9fa5fca730d7ab65a
 cdt_name:
 - cos7
 channel_sources:
@@ -23,7 +26,5 @@ python_impl:
 target_platform:
 - linux-64
 zip_keys:
-- - c_stdlib_version
-  - cdt_name
 - - python
   - python_impl
