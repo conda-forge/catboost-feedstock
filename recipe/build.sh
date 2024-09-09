@@ -1,5 +1,8 @@
 #!/bin/bash
 
+mkdir bin
+ln -sf ${BUILD_PREFIX}/bin/{swig,ragel,yasm} bin/
+
 cmake ${CMAKE_ARGS} \
   -DCMAKE_POSITION_INDEPENDENT_CODE=On \
   -DCMAKE_BUILD_TYPE=Release \

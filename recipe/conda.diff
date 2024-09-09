@@ -116,7 +116,7 @@ index 81878ee112..9f33f089f3 100644
  if __name__ == '__main__':
      arc_root = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..'))
 -    out_root = tempfile.mkdtemp()
-+    out_root = arc_root
++    out_root = os.path.join(arc_root, 'build-wheel')
      try:
          args_parser = ArgumentParser()
          args_parser.add_argument('--build-with-cuda', choices=['yes', 'no'], default='yes')
