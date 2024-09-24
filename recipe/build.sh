@@ -12,5 +12,10 @@ cmake ${CMAKE_ARGS} \
 make -j${CPU_COUNT} _catboost _hnsw
 
 cd catboost/python-package/
-$PYTHON mk_wheel.py --build-with-cuda=no
-$PYTHON -m pip install catboost-*.whl
+
+pushd catboost/widget/js/
+  yarn install
+popd
+
+$PYTHON setup.py bdist_wheel --with-hnsw --prebuilt-extensions-build-root-dir=${SRC_DIR} -vv
+$PYTHON -m pip install dist/catboost*.whl

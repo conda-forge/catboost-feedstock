@@ -66,7 +66,7 @@ index c20a6ab38c..2f81e1ab9a 100644
 +  libs-model-model_export
 +)
 diff --git a/catboost/python-package/mk_wheel.py b/catboost/python-package/mk_wheel.py
-index 81878ee112..9f33f089f3 100644
+index 81878ee112..7a02f43fee 100644
 --- a/catboost/python-package/mk_wheel.py
 +++ b/catboost/python-package/mk_wheel.py
 @@ -52,7 +52,7 @@ class PythonTrait(object):
@@ -142,3 +142,15 @@ index 647156b924..7357b63ba4 100644
 +target_link_libraries(libs-cxxsupp-libcxxrt PUBLIC
 +  libs-cxxsupp-libcxxabi-parts
 +)
+diff --git a/contrib/restricted/abseil-cpp-tstring/y_absl/strings/CMakeLists.txt b/contrib/restricted/abseil-cpp-tstring/y_absl/strings/CMakeLists.txt
+index 21359e1a58..2697b366e6 100644
+--- a/contrib/restricted/abseil-cpp-tstring/y_absl/strings/CMakeLists.txt
++++ b/contrib/restricted/abseil-cpp-tstring/y_absl/strings/CMakeLists.txt
+@@ -42,3 +42,7 @@ elseif (ANDROID AND CMAKE_ANDROID_ARCH STREQUAL "x86_64")
+   include(CMakeLists.android-x86_64.txt)
+ endif()
+ 
++target_link_libraries(abseil-cpp-tstring-y_absl-strings PUBLIC
++  abseil-cpp-tstring-y_absl-profiling
++)
++
