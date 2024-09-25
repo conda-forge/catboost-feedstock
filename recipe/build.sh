@@ -13,6 +13,7 @@ make -j${CPU_COUNT} _catboost _hnsw
 
 cd catboost/python-package/
 
+export YARN_ENABLE_IMMUTABLE_INSTALLS=false  # the lock file is updated by the build
 pushd catboost/widget/js/
   yarn install
 popd
