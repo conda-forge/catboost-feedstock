@@ -24,6 +24,8 @@ if [[ "$target_platform" != "$build_platform" ]]; then
     unset CXXFLAGS
 
     cmake \
+     -DCMAKE_PREFIX_PATH=${BUILD_PREFIX} \
+     -DCMAKE_INSTALL_PREFIX=${BUILD_PREFIX} \
      -DCMAKE_POSITION_INDEPENDENT_CODE=On \
      -DCMAKE_BUILD_TYPE=Release \
      -DCATBOOST_COMPONENTS="PYTHON-PACKAGE" \
