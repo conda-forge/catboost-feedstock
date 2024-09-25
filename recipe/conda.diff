@@ -54,17 +54,22 @@ index 24ffd1225a..a5b68691fc 100644
    include(CMakeLists.linux-x86_64.txt)
  elseif (CMAKE_SYSTEM_NAME STREQUAL "Linux" AND CMAKE_SYSTEM_PROCESSOR STREQUAL "x86_64" AND HAVE_CUDA)
 diff --git a/catboost/private/libs/algo/CMakeLists.txt b/catboost/private/libs/algo/CMakeLists.txt
-index c20a6ab38c..2f81e1ab9a 100644
+index c20a6ab38c..fcfb509ea2 100644
 --- a/catboost/private/libs/algo/CMakeLists.txt
 +++ b/catboost/private/libs/algo/CMakeLists.txt
-@@ -34,3 +34,7 @@ elseif (WIN32 AND CMAKE_SYSTEM_PROCESSOR STREQUAL "AMD64" AND HAVE_CUDA)
+@@ -34,3 +34,12 @@ elseif (WIN32 AND CMAKE_SYSTEM_PROCESSOR STREQUAL "AMD64" AND HAVE_CUDA)
    include(CMakeLists.windows-x86_64-cuda.txt)
  endif()
  
 +target_link_libraries(private-libs-algo PUBLIC
-+  cpp-malloc-tcmalloc
 +  libs-model-model_export
 +)
++
++if (CMAKE_SYSTEM_NAME STREQUAL "Linux" AND (CMAKE_SYSTEM_PROCESSOR STREQUAL "ppc64le" OR CMAKE_SYSTEM_PROCESSOR STREQUAL "x86_64"))
++  target_link_libraries(private-libs-algo PUBLIC
++    cpp-malloc-tcmalloc
++  )
++endif()
 diff --git a/catboost/python-package/mk_wheel.py b/catboost/python-package/mk_wheel.py
 index 81878ee112..7a02f43fee 100644
 --- a/catboost/python-package/mk_wheel.py
