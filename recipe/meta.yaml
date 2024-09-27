@@ -1,5 +1,11 @@
 {% set version = "1.2.7" %}
 
+{% if cuda_compiler_version == "None" %}
+{% set cuda_major = 0 %}
+{% else %}
+{% set cuda_major = environ.get("cuda_compiler_version", "11.8").split(".")[0] | int %}
+{% endif %}
+
 package:
   name: catboost
   version: {{ version }}
@@ -20,6 +26,7 @@ build:
   skip: True  # [python_impl == 'pypy']
   # TODO: support Linux on ppc64le: https://github.com/catboost/catboost/issues/2145
   skip: True  # [ppc64le]
+  skip: True  # [linux and cuda_compile_version == "None"]
 
 requirements:
   build:
@@ -33,16 +40,24 @@ requirements:
     - cmake                       # [unix]
     - make                        # [unix]
     - ninja                       # [unix]
-    - {{ compiler('clangxx') }}   # [linux]
-    - {{ compiler('cxx') }}       # [osx]
+    - {{ compiler('cxx') }}       # [linux or osx]
+    - clangxx < 16                # [linux]
     - {{ stdlib('c') }}           # [unix]
+    - {{ compiler('cuda') }}      # [unix and cuda_compiler_version != "None"]
     - lld                         # [unix]
     - yarn                        # [unix]
+    # For pyzmq
+    - jupyterlab 3.0.6.*          # [unix and build_platform != target_platform]
   host:
     - openssl                     # [unix]
     - jupyterlab 3.0.6.*          # [unix]
     - python
     - pip
+    - cuda-version {{ cuda_compiler_version }}  # [cuda_compiler_version != "None"]
+    {% if cuda_major >= 12 %}
+    - cuda-driver-dev
+    - cuda-cudart-dev
+    {% endif %}
   run:
     - python
     - numpy >=1.16.0,<2
