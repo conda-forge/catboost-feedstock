@@ -19,8 +19,6 @@ source:
 build:
   number: 1
   #  Yandex supplies whl files on PyPI for:
-  # - Linux: Python 3.7, 3.8, 3.9, 3.10, 3.11, 3.12
-  # - OS X: Python 3.7, 3.8, 3.9, 3.10, 3.11, 3.12
   # - Win-64: Python 3.7, 3.8, 3.9, 3.10, 3.11, 3.12
   skip: True  # [win32]
   skip: True  # [python_impl == 'pypy']
@@ -53,6 +51,7 @@ requirements:
     - jupyterlab 3.0.6.*          # [unix]
     - python
     - pip
+    - setuptools
     - cuda-version {{ cuda_compiler_version }}  # [cuda_compiler_version != "None"]
     {% if cuda_major >= 12 %}
     - cuda-driver-dev
@@ -66,9 +65,8 @@ requirements:
     - six
     - plotly
     - matplotlib-base
-    - python-graphviz
     #python-graphviz avoids the pip check error
-
+    - python-graphviz
 
 test:
   imports:
