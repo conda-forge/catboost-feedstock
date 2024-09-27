@@ -26,7 +26,8 @@ build:
   skip: True  # [python_impl == 'pypy']
   # TODO: support Linux on ppc64le: https://github.com/catboost/catboost/issues/2145
   skip: True  # [ppc64le]
-  skip: True  # [linux and cuda_compile_version == "None"]
+  skip: True  # [linux and cuda_compiler_version == "None"]
+  skip: True  # [win and cuda_compiler_version != "None"]
 
 requirements:
   build:

@@ -50,14 +50,17 @@ if [[ "$target_platform" != "$build_platform" ]]; then
   export CMAKE_ARGS="${CMAKE_ARGS} -DTOOLS_ROOT=$SRC_DIR/native-build"
 fi
 
-if [[ "$cuda_compiler_version" != "11.8" ]]; then
-  find . -name "CMakeLists*.txt" -type f -print0 | xargs -0 sed -i "s/sm_35/sm_50/g"
-  find . -name "CMakeLists*.txt" -type f -print0 | xargs -0 sed -i "s/compute_35/compute_50/g"
-fi
+if [[ "$cuda_compiler_version" != "None" ]]; then
+  if [[ "$cuda_compiler_version" != "11.8" ]]; then
+    find . -name "CMakeLists*.txt" -type f -print0 | xargs -0 sed -i "s/sm_35/sm_50/g"
+    find . -name "CMakeLists*.txt" -type f -print0 | xargs -0 sed -i "s/compute_35/compute_50/g"
+  fi
 
-find . -name "CMakeLists*.txt" -type f -print0 | xargs -0 sed -i "s/-lcudart_static/-lcudart/g"
-find . -name "CMakeLists*.txt" -type f -print0 | xargs -0 sed -i "s/-lcudadevrt/-lcudart/g"
-find . -name "CMakeLists*.txt" -type f -print0 | xargs -0 sed -i "s/-lculibos/-lcudart/g"
+  find . -name "CMakeLists*.txt" -type f -print0 | xargs -0 sed -i "s/-lcudart_static/-lcudart/g"
+  find . -name "CMakeLists*.txt" -type f -print0 | xargs -0 sed -i "s/-lcudadevrt/-lcudart/g"
+  find . -name "CMakeLists*.txt" -type f -print0 | xargs -0 sed -i "s/-lculibos/-lcudart/g"
+  CMAKE_ARGS="${CMAKE_ARGS} -DHAVE_CUDA=ON"
+fi
 
 cmake ${CMAKE_ARGS} \
   -DCMAKE_POSITION_INDEPENDENT_CODE=On \
