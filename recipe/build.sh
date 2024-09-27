@@ -34,6 +34,7 @@ if [[ "$target_platform" != "$build_platform" ]]; then
     unset CFLAGS
     unset CPPFLAGS
     unset CXXFLAGS
+    unset CONDA_BUILD_SYSROOT
 
     cmake \
      -DCMAKE_PREFIX_PATH=${BUILD_PREFIX} \
