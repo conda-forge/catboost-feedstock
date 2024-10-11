@@ -18,6 +18,7 @@ source:
 
 build:
   number: 1
+  # We build from source on Unix and re-package binaries on windows
   #  Yandex supplies whl files on PyPI for:
   # - Win-64: Python 3.7, 3.8, 3.9, 3.10, 3.11, 3.12
   skip: True  # [win32]
