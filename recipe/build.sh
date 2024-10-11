@@ -44,7 +44,7 @@ if [[ "$target_platform" != "$build_platform" ]]; then
      -DCATBOOST_COMPONENTS="PYTHON-PACKAGE" \
     ..
 
-    make -j${CPU_COUNT} _catboost _hnsw
+    ninja -j${CPU_COUNT} _catboost _hnsw
     popd
   )
   export CMAKE_ARGS="${CMAKE_ARGS} -DTOOLS_ROOT=$SRC_DIR/native-build"
@@ -68,7 +68,7 @@ cmake ${CMAKE_ARGS} \
   -DCATBOOST_COMPONENTS="PYTHON-PACKAGE" \
   .
 
-make -j${CPU_COUNT} _catboost _hnsw
+ninja -j${CPU_COUNT} _catboost _hnsw
 
 cd catboost/python-package/
 
