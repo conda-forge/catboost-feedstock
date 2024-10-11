@@ -42,6 +42,7 @@ if [[ "$target_platform" != "$build_platform" ]]; then
      -DCMAKE_INSTALL_PREFIX=${BUILD_PREFIX} \
      -DCMAKE_TOOLCHAIN_FILE=${SRC_DIR}/build/toolchains/clang.toolchain \
      -DCMAKE_BUILD_TYPE=Release \
+     -DCATBOOST_COMPONENTS= \
     ..
 
     # command line tools needed are given by https://github.com/catboost/catboost/blob/ee67179792ea2530ac531d20b6bb6fa6998f0a78/build/build_native.py#L50-L58
