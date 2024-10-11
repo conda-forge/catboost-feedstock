@@ -42,9 +42,11 @@ requirements:
     - yasm                        # [unix]
     - swig                        # [unix]
     - cmake >=3.18                # [unix]
-    - ninja                       # [unix]
+    # ninja reports a cycle, so use make
+    - make                        # [unix]
     - {{ compiler('cxx') }}       # [linux or osx]
-    - clangxx >=14,<15            # [linux]
+    # clang 14 on conda-forge is non-functional
+    - clangxx >=15,<16            # [linux]
     - {{ stdlib('c') }}           # [unix]
     - {{ compiler('cuda') }}      # [unix and cuda_compiler_version != "None"]
     - lld >=7                     # [unix]

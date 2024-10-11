@@ -40,11 +40,12 @@ if [[ "$target_platform" != "$build_platform" ]]; then
     cmake \
      -DCMAKE_PREFIX_PATH=${BUILD_PREFIX} \
      -DCMAKE_INSTALL_PREFIX=${BUILD_PREFIX} \
+     -DCMAKE_TOOLCHAIN_FILE=${SRC_DIR}/build/toolchains/clang.toolchain \
      -DCMAKE_BUILD_TYPE=Release \
     ..
 
     # command line tools needed are given by https://github.com/catboost/catboost/blob/ee67179792ea2530ac531d20b6bb6fa6998f0a78/build/build_native.py#L50-L58
-    ninja -j${CPU_COUNT} archiver, cpp_styleguide enum_parser flatc protoc rescompiler triecompiler
+    make -j${CPU_COUNT} archiver, cpp_styleguide enum_parser flatc protoc rescompiler triecompiler
     popd
   )
   export CMAKE_ARGS="${CMAKE_ARGS} -DTOOLS_ROOT=$SRC_DIR/native-build"
@@ -52,7 +53,7 @@ fi
 
 if [[ "$cuda_compiler_version" != "None" ]]; then
   if [[ "$cuda_compiler_version" != "11.8" ]]; then
-    find . -name "CMakeLists*cuda.txt" -type f -print0 | xargs -0 sed -i "s/-gencode=arch=compute_35,code=sm_35/g"
+    find . -name "CMakeLists*cuda.txt" -type f -print0 | xargs -0 sed -i -z "s/-gencode\s*arch=compute_35,code=sm_35//g"
   fi
 
   find . -name "CMakeLists*.txt" -type f -print0 | xargs -0 sed -i "s/-lcudart_static/-lcudart/g"
@@ -63,12 +64,12 @@ fi
 
 cmake ${CMAKE_ARGS} \
   -DCMAKE_POSITION_INDEPENDENT_CODE=On \
+  -DCMAKE_TOOLCHAIN_FILE=${SRC_DIR}/build/toolchains/clang.toolchain \
   -DCMAKE_BUILD_TYPE=Release \
   -DCATBOOST_COMPONENTS="PYTHON-PACKAGE" \
   .
 
-ninja -j${CPU_COUNT} _catboost _hnsw
-
+make -j${CPU_COUNT} _catboost _hnsw
 cd catboost/python-package/
 
 export YARN_ENABLE_IMMUTABLE_INSTALLS=false  # the lock file is updated by the build
