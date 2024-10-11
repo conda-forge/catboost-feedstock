@@ -52,8 +52,7 @@ fi
 
 if [[ "$cuda_compiler_version" != "None" ]]; then
   if [[ "$cuda_compiler_version" != "11.8" ]]; then
-    find . -name "CMakeLists*.txt" -type f -print0 | xargs -0 sed -i "s/sm_35/sm_50/g"
-    find . -name "CMakeLists*.txt" -type f -print0 | xargs -0 sed -i "s/compute_35/compute_50/g"
+    find . -name "CMakeLists*cuda.txt" -type f -print0 | xargs -0 sed -i "s/-gencode=arch=compute_35,code=sm_35/g"
   fi
 
   find . -name "CMakeLists*.txt" -type f -print0 | xargs -0 sed -i "s/-lcudart_static/-lcudart/g"
