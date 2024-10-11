@@ -45,7 +45,7 @@ if [[ "$target_platform" != "$build_platform" ]]; then
     ..
 
     # command line tools needed are given by https://github.com/catboost/catboost/blob/ee67179792ea2530ac531d20b6bb6fa6998f0a78/build/build_native.py#L50-L58
-    make -j${CPU_COUNT} archiver, cpp_styleguide enum_parser flatc protoc rescompiler triecompiler
+    make -j${CPU_COUNT} archiver cpp_styleguide enum_parser flatc protoc rescompiler triecompiler
     popd
   )
   export CMAKE_ARGS="${CMAKE_ARGS} -DTOOLS_ROOT=$SRC_DIR/native-build"
