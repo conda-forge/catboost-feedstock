@@ -40,7 +40,7 @@ requirements:
     - cmake                       # [unix]
     - ninja                       # [unix]
     - {{ compiler('cxx') }}       # [linux or osx]
-    - clangxx <16                 # [linux]
+    - clangxx >=14,<15            # [linux]
     - {{ stdlib('c') }}           # [unix]
     - {{ compiler('cuda') }}      # [unix and cuda_compiler_version != "None"]
     - lld                         # [unix]
