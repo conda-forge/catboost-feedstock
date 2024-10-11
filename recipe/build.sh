@@ -17,6 +17,7 @@ fi
 
 if [[ "$target_platform" != "$build_platform" ]]; then
   (
+    # Build command line tools for $build_platform
     mkdir native-build
     pushd native-build
 
@@ -30,7 +31,7 @@ if [[ "$target_platform" != "$build_platform" ]]; then
     export LDFLAGS=${LDFLAGS//$PREFIX/$BUILD_PREFIX}
     export PKG_CONFIG_PATH=${BUILD_PREFIX}/lib/pkgconfig
 
-    # Unset them as we're ok with builds that are either slow or non-portable
+    # Unset these as they refer to PREFIX instead of BUILD_PREFIX
     unset CFLAGS
     unset CPPFLAGS
     unset CXXFLAGS
@@ -39,12 +40,11 @@ if [[ "$target_platform" != "$build_platform" ]]; then
     cmake \
      -DCMAKE_PREFIX_PATH=${BUILD_PREFIX} \
      -DCMAKE_INSTALL_PREFIX=${BUILD_PREFIX} \
-     -DCMAKE_POSITION_INDEPENDENT_CODE=On \
      -DCMAKE_BUILD_TYPE=Release \
-     -DCATBOOST_COMPONENTS="PYTHON-PACKAGE" \
     ..
 
-    ninja -j${CPU_COUNT} _catboost _hnsw
+    # command line tools needed are given by https://github.com/catboost/catboost/blob/ee67179792ea2530ac531d20b6bb6fa6998f0a78/build/build_native.py#L50-L58
+    ninja -j${CPU_COUNT} archiver, cpp_styleguide enum_parser flatc protoc rescompiler triecompiler
     popd
   )
   export CMAKE_ARGS="${CMAKE_ARGS} -DTOOLS_ROOT=$SRC_DIR/native-build"
