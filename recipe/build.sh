@@ -35,7 +35,10 @@ if [[ "$target_platform" != "$build_platform" ]]; then
     unset CFLAGS
     unset CPPFLAGS
     unset CXXFLAGS
-    export CONDA_BUILD_SYSROOT=${BUILD_PREFIX}/${CONDA_TOOLCHAIN_BUILD}/sysroot
+
+    if [[ "$build_platform" == "linux-"* ]]; then
+      export CONDA_BUILD_SYSROOT=${BUILD_PREFIX}/${CONDA_TOOLCHAIN_BUILD}/sysroot
+    fi
 
     cmake \
      -DCMAKE_PREFIX_PATH=${BUILD_PREFIX} \
