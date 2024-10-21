@@ -29,7 +29,6 @@ build:
   skip: True  # [osx and x86_64 and (py == 38)]
   # TODO: support Linux on ppc64le: https://github.com/catboost/catboost/issues/2145
   skip: True  # [ppc64le]
-  skip: True  # [linux and cuda_compiler_version == "None"]
   skip: True  # [win and cuda_compiler_version != "None"]
 
 requirements:
@@ -72,6 +71,10 @@ requirements:
     - matplotlib-base
     #python-graphviz avoids the pip check error
     - python-graphviz
+  run_constrained:
+    # make sure the non CUDA build does not get installed when the user
+    # does not have CUDA drivers installed.
+    - __cuda <0.0a0  # [cuda_compiler_version != "None"]
 
 test:
   imports:
