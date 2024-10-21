@@ -74,7 +74,7 @@ requirements:
   run_constrained:
     # make sure the non CUDA build does not get installed when the user
     # does not have CUDA drivers installed.
-    - __cuda <0.0a0  # [cuda_compiler_version != "None"]
+    - __cuda <0.0a0  # [cuda_compiler_version == "None"]
 
 test:
   imports:
