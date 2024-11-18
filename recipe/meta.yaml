@@ -30,6 +30,8 @@ build:
   # TODO: support Linux on ppc64le: https://github.com/catboost/catboost/issues/2145
   skip: True  # [ppc64le]
   skip: True  # [win and cuda_compiler_version != "None"]
+  string: cuda{{ cuda_compiler_version | replace('.', '') }}_py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [unix and cuda_compiler_version != "None"]
+  string: cpu_{{ blas_impl }}_py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}                                 # [unix and cuda_compiler_version == "None"]
 
 requirements:
   build:
