@@ -77,6 +77,7 @@ requirements:
     # make sure the non CUDA build does not get installed when the user
     # does not have CUDA drivers installed.
     - __cuda <0.0a0  # [cuda_compiler_version == "None"]
+    - {{ pin_compatible("jupyterlab", max_pin=None) }}   # [unix]
 
 test:
   imports:
