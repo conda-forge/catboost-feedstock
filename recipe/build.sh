@@ -66,14 +66,14 @@ if [[ "$cuda_compiler_version" != "None" ]]; then
   CMAKE_ARGS="${CMAKE_ARGS} -DHAVE_CUDA=ON"
 fi
 
-cmake -G Ninja ${CMAKE_ARGS} \
+cmake ${CMAKE_ARGS} \
   -DCMAKE_POSITION_INDEPENDENT_CODE=On \
   -DCMAKE_TOOLCHAIN_FILE=${SRC_DIR}/build/toolchains/clang.toolchain \
   -DCMAKE_BUILD_TYPE=Release \
   -DCATBOOST_COMPONENTS="PYTHON-PACKAGE" \
   .
 
-ninja -j${CPU_COUNT} _catboost _hnsw
+make -j${CPU_COUNT} _catboost _hnsw
 cd catboost/python-package/
 
 export YARN_ENABLE_IMMUTABLE_INSTALLS=false  # the lock file is updated by the build

@@ -45,7 +45,6 @@ requirements:
     - cmake >=3.18                # [unix]
     # ninja reports a cycle, so use make
     - make                        # [unix]
-    - ninja                       # [unix]
     - {{ compiler('cxx') }}       # [linux or osx]
     # clang 14 on conda-forge is non-functional
     - clangxx >=15,<16            # [linux]
