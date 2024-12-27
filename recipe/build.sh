@@ -66,14 +66,29 @@ if [[ "$cuda_compiler_version" != "None" ]]; then
   CMAKE_ARGS="${CMAKE_ARGS} -DHAVE_CUDA=ON"
 fi
 
-cmake ${CMAKE_ARGS} \
-  -DCMAKE_POSITION_INDEPENDENT_CODE=On \
-  -DCMAKE_TOOLCHAIN_FILE=${SRC_DIR}/build/toolchains/clang.toolchain \
-  -DCMAKE_BUILD_TYPE=Release \
-  -DCATBOOST_COMPONENTS="PYTHON-PACKAGE" \
-  .
+# restrict CUDA compilation parallelism
+cp ci/cmake/cuda.cmake cmake/cuda.cmake
 
-make -j${CPU_COUNT} _catboost _hnsw
+(
+  mkdir cmake_build
+  pushd cmake_build
+
+  if [[ "$target_platform" == "$build_platform" ]]; then
+    mkdir bin
+    ln -sf ${BUILD_PREFIX}/bin/{swig,ragel,yasm} bin/
+  fi
+
+  cmake ${CMAKE_ARGS} \
+    -DCMAKE_POSITION_INDEPENDENT_CODE=On \
+    -DCMAKE_TOOLCHAIN_FILE=${SRC_DIR}/build/toolchains/clang.toolchain \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DCATBOOST_COMPONENTS="PYTHON-PACKAGE" \
+    ..
+
+  make -j${CPU_COUNT} _catboost _hnsw
+  popd
+)
+
 cd catboost/python-package/
 
 export YARN_ENABLE_IMMUTABLE_INSTALLS=false  # the lock file is updated by the build
@@ -81,5 +96,5 @@ pushd catboost/widget/js/
   yarn install
 popd
 
-$PYTHON setup.py bdist_wheel --with-hnsw --prebuilt-extensions-build-root-dir=${SRC_DIR} -vv
+$PYTHON setup.py bdist_wheel --with-hnsw --prebuilt-extensions-build-root-dir=${SRC_DIR}/cmake_build -vv
 $PYTHON -m pip install dist/catboost*.whl

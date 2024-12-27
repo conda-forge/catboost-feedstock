@@ -3,9 +3,9 @@ index 24ffd1225a..eb86858e75 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
 @@ -19,6 +19,13 @@ endif()
- 
+
  project(CATBOOST LANGUAGES C CXX ASM)
- 
+
 +# Patch to use system provided OpenSSL instead of vcpkg
 +find_package(OpenSSL REQUIRED)
 +include_directories(${OPENSSL_INCLUDE_DIR})
@@ -28,7 +28,7 @@ index 24ffd1225a..eb86858e75 100644
 @@ -48,22 +55,6 @@ include(cmake/recursive_library.cmake)
  include(cmake/shared_libs.cmake)
  include(cmake/swig.cmake)
- 
+
 -if (CMAKE_CROSSCOMPILING)
 -  include(${PROJECT_BINARY_DIR}/conan_paths.cmake)
 -else()
@@ -58,70 +58,19 @@ index 7cb81ff061..e11ae974d0 100644
 -
  set(CMAKE_C_STANDARD_LIBRARIES "-lc -lm")
  set(CMAKE_CXX_STANDARD_LIBRARIES "-lc -lm")
- 
+
  set(CMAKE_CUDA_COMPILER nvcc)
 -set(CMAKE_CUDA_HOST_COMPILER clang-14)
- 
+
  set(CMAKE_CUDA_FLAGS_INIT "--allow-unsupported-compiler")
- 
+
 @@ -14,9 +10,6 @@ if (NOT APPLE)
    set(CMAKE_SHARED_LINKER_FLAGS -fuse-ld=lld)
  endif()
- 
+
 -set(ENV{CC} clang)
 -set(ENV{CXX} clang++)
 -
  set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
  set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
  set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
-diff --git a/catboost/private/libs/algo/CMakeLists.txt b/catboost/private/libs/algo/CMakeLists.txt
-index c20a6ab38c..fcfb509ea2 100644
---- a/catboost/private/libs/algo/CMakeLists.txt
-+++ b/catboost/private/libs/algo/CMakeLists.txt
-@@ -34,3 +34,12 @@ elseif (WIN32 AND CMAKE_SYSTEM_PROCESSOR STREQUAL "AMD64" AND HAVE_CUDA)
-   include(CMakeLists.windows-x86_64-cuda.txt)
- endif()
- 
-+target_link_libraries(private-libs-algo PUBLIC
-+  libs-model-model_export
-+)
-+
-+if (CMAKE_SYSTEM_NAME STREQUAL "Linux" AND (CMAKE_SYSTEM_PROCESSOR STREQUAL "ppc64le" OR CMAKE_SYSTEM_PROCESSOR STREQUAL "x86_64"))
-+  target_link_libraries(private-libs-algo PUBLIC
-+    cpp-malloc-tcmalloc
-+  )
-+endif()
-diff --git a/contrib/libs/clapack/part2/CMakeLists.txt b/contrib/libs/clapack/part2/CMakeLists.txt
-index 21359e1a58..0826e1a8cf 100644
---- a/contrib/libs/clapack/part2/CMakeLists.txt
-+++ b/contrib/libs/clapack/part2/CMakeLists.txt
-@@ -42,3 +42,6 @@ elseif (ANDROID AND CMAKE_ANDROID_ARCH STREQUAL "x86_64")
-   include(CMakeLists.android-x86_64.txt)
- endif()
- 
-+target_link_libraries(libs-clapack-part2 PUBLIC
-+  libs-clapack-part1
-+)
-diff --git a/contrib/libs/cxxsupp/libcxxrt/CMakeLists.txt b/contrib/libs/cxxsupp/libcxxrt/CMakeLists.txt
-index 647156b924..7357b63ba4 100644
---- a/contrib/libs/cxxsupp/libcxxrt/CMakeLists.txt
-+++ b/contrib/libs/cxxsupp/libcxxrt/CMakeLists.txt
-@@ -30,3 +30,6 @@ elseif (CMAKE_SYSTEM_NAME STREQUAL "Darwin" AND CMAKE_SYSTEM_PROCESSOR STREQUAL
-   include(CMakeLists.darwin-arm64.txt)
- endif()
- 
-+target_link_libraries(libs-cxxsupp-libcxxrt PUBLIC
-+  libs-cxxsupp-libcxxabi-parts
-+)
-diff --git a/contrib/restricted/abseil-cpp-tstring/y_absl/strings/CMakeLists.txt b/contrib/restricted/abseil-cpp-tstring/y_absl/strings/CMakeLists.txt
-index 21359e1a58..2697b366e6 100644
---- a/contrib/restricted/abseil-cpp-tstring/y_absl/strings/CMakeLists.txt
-+++ b/contrib/restricted/abseil-cpp-tstring/y_absl/strings/CMakeLists.txt
-@@ -42,3 +42,7 @@ elseif (ANDROID AND CMAKE_ANDROID_ARCH STREQUAL "x86_64")
-   include(CMakeLists.android-x86_64.txt)
- endif()
- 
-+target_link_libraries(abseil-cpp-tstring-y_absl-strings PUBLIC
-+  abseil-cpp-tstring-y_absl-profiling
-+)
-+
