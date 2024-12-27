@@ -1,8 +1,5 @@
 #!/bin/bash
 
-mkdir bin
-ln -sf ${BUILD_PREFIX}/bin/{swig,ragel,yasm} bin/
-
 if [[ "$target_platform" == "linux-"* ]]; then
   ln -sf $BUILD_PREFIX/bin/clang $BUILD_PREFIX/bin/${BUILD}-clang++
   ln -sf $BUILD_PREFIX/bin/clang $BUILD_PREFIX/bin/${BUILD}-clang
@@ -73,10 +70,8 @@ cp ci/cmake/cuda.cmake cmake/cuda.cmake
   mkdir cmake_build
   pushd cmake_build
 
-  if [[ "$target_platform" == "$build_platform" ]]; then
-    mkdir bin
-    ln -sf ${BUILD_PREFIX}/bin/{swig,ragel,yasm} bin/
-  fi
+  mkdir bin
+  ln -sf ${BUILD_PREFIX}/bin/{swig,ragel,yasm} bin/
 
   cmake ${CMAKE_ARGS} \
     -DCMAKE_POSITION_INDEPENDENT_CODE=On \

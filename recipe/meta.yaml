@@ -43,7 +43,6 @@ requirements:
     - yasm >=1.3.0                # [unix]
     - swig >=4.0.2                # [unix]
     - cmake >=3.18                # [unix]
-    # ninja reports a cycle, so use make
     - make                        # [unix]
     - {{ compiler('cxx') }}       # [linux or osx]
     # clang 14 on conda-forge is non-functional
