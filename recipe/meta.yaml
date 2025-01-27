@@ -23,7 +23,7 @@ build:
   # - Win-64: Python 3.7, 3.8, 3.9, 3.10, 3.11, 3.12
   skip: True  # [win32]
   skip: True  # [python_impl == 'pypy']
- # There are issues with python 3.8 on macOS 11.x: https://github.com/conda-forge/python-feedstock/issues/445
+  # There are issues with python 3.8 on macOS 11.x: https://github.com/conda-forge/python-feedstock/issues/445
   #  so Conda has issues with tags compatibility with platform tags 'macosx_11_0_...'
   #  so disable this configuration for now
   skip: True  # [osx and x86_64 and (py == 38)]
