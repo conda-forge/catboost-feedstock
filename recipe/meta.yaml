@@ -73,8 +73,8 @@ requirements:
     - six
     - plotly
     - matplotlib-base
-    #python-graphviz avoids the pip check error
     - python-graphviz
+    #python-graphviz avoids the pip check error
   run_constrained:
     # make sure the non CUDA build does not get installed when the user
     # does not have CUDA drivers installed.
