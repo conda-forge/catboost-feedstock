@@ -78,6 +78,10 @@ requirements:
   run_constrained:
     # make sure the non CUDA build does not get installed when the user has CUDA enabled
     - __cuda <0.0a0  # [unix and cuda_compiler_version == "None"]
+    # relax jupyterlab version constraints from those used in the build
+    # catboost only works properly with jupyterlab 3.x for now
+    # but we don't want to constrain users to these versions as it only affects catboost visualization
+    # and other versions might be preferable for other packages
     - {{ pin_compatible("jupyterlab", max_pin=None) }}   # [unix]
 
 test:
