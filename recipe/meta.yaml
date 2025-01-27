@@ -29,6 +29,9 @@ build:
   skip: True  # [osx and x86_64 and (py == 38)]
   # TODO: support Linux on ppc64le: https://github.com/catboost/catboost/issues/2145
   skip: True  # [ppc64le]
+  # Wheels from PyPI have a single version that already contains CUDA support so do not do separate builds on Windows,
+  # just have a single version for now
+  # TODO: build from source on Windows
   skip: True  # [win and cuda_compiler_version != "None"]
   string: cuda{{ cuda_compiler_version | replace('.', '') }}_py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [unix and cuda_compiler_version != "None"]
   string: cpu_py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}                                                 # [unix and cuda_compiler_version == "None"]
