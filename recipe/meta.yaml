@@ -77,7 +77,7 @@ requirements:
     #python-graphviz avoids the pip check error
   run_constrained:
     # make sure the non CUDA build does not get installed when the user has CUDA enabled
-    - __cuda <0.0a0  # [cuda_compiler_version == "None"]
+    - __cuda <0.0a0  # [unix and cuda_compiler_version == "None"]
     - {{ pin_compatible("jupyterlab", max_pin=None) }}   # [unix]
 
 test:
