@@ -1,6 +1,12 @@
+{% set version = "1.2.7" %}
+
 package:
   name: catboost
-  version: "1.2.7"
+  version: {{ version }}
+
+source:
+  url: https://github.com/catboost/catboost/archive/refs/tags/v{{ version }}.tar.gz
+  sha256: 099ff437993621b86565f3b25150071bdc20623ff77b75ed4d0cf6a37263e1fd
 
 build:
   number: 0
