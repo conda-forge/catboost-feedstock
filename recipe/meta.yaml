@@ -89,8 +89,16 @@ test:
     - catboost
   commands:
     - pip check
+    - python catboost/pytest/smoke_tests/classification_tutorial_cpu.py
   requires:
     - pip
+    - scikit-learn
+    - shap
+    - traitlets
+    - ipython
+    - ipywidgets >=7.0,<9.0
+  source_files:
+    - catboost/pytest/smoke_tests/classification_tutorial_cpu.py
 
 about:
   home: http://catboost.ai
