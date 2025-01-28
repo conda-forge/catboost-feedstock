@@ -33,6 +33,8 @@ build:
   # just have a single version for now
   # TODO: build from source on Windows
   skip: True  # [win and cuda_compiler_version != "None"]
+  # TODO: support CUDA >= 12.3 : https://github.com/catboost/catboost/issues/2755
+  skip: True  # [cuda_compiler_version not in ("None", "11.8", "12.0", "12.1", "12.2")]
   string: cuda{{ cuda_compiler_version | replace('.', '') }}_py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [unix and cuda_compiler_version != "None"]
   string: cpu_py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}                                                 # [unix and cuda_compiler_version == "None"]
 
