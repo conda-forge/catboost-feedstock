@@ -17,7 +17,7 @@ source:
     - conda.diff
 
 build:
-  number: 1
+  number: 2
   # We build from source on Unix and re-package binaries on windows
   #  Yandex supplies whl files on PyPI for:
   # - Win-64: Python 3.7, 3.8, 3.9, 3.10, 3.11, 3.12
@@ -76,8 +76,7 @@ requirements:
     - python-graphviz
     #python-graphviz avoids the pip check error
   run_constrained:
-    # make sure the non CUDA build does not get installed when the user has CUDA enabled
-    - __cuda <0.0a0  # [unix and cuda_compiler_version == "None"]
+    - __cuda  # [cuda_compiler != "None"]
     # relax jupyterlab version constraints from those used in the build
     # catboost only works properly with jupyterlab 3.x for now
     # but we don't want to constrain users to these versions as it only affects catboost visualization
