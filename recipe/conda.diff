@@ -1,5 +1,5 @@
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index 24ffd1225a..1e2a697f62 100644
+index 93f044a17e..44a625b092 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
 @@ -19,6 +19,17 @@ endif()
@@ -7,7 +7,7 @@ index 24ffd1225a..1e2a697f62 100644
  project(CATBOOST LANGUAGES C CXX ASM)
  
 +# Use OpenSSL from system instead of the version provided by conan.
-+#  1. conan supplied FindOpenSSL.cmake provides OpenSSL::OpenSSL
++#  1. conan supplied FindOpenSSL.cmake provides openssl::openssl
 +#  2. cmake supplied FindOpenSSL.cmake provides OpenSSL::SSL and OpenSSL::Crypto.
 +# See https://github.com/conan-io/conan-center-index/issues/952
 +# This patch is needed to reconcile the difference.
@@ -15,50 +15,19 @@ index 24ffd1225a..1e2a697f62 100644
 +include_directories(${OPENSSL_INCLUDE_DIR})
 +add_library(LinkOpenSSL INTERFACE)
 +target_link_libraries(LinkOpenSSL INTERFACE OpenSSL::SSL OpenSSL::Crypto)
-+add_library(OpenSSL::OpenSSL ALIAS LinkOpenSSL)
++add_library(openssl::openssl ALIAS LinkOpenSSL)
 +
  set(BUILD_SHARED_LIBS Off)
  set(CMAKE_CXX_STANDARD 20)
  set(CMAKE_CXX_EXTENSIONS Off)
-@@ -39,7 +50,6 @@ include(cmake/global_flags.cmake)
- include(cmake/global_vars.cmake)
- include(cmake/archive.cmake)
- include(cmake/common.cmake)
--include(cmake/conan1_deprecated.cmake)
- include(cmake/cuda.cmake)
- include(cmake/cython.cmake)
- include(cmake/fbs.cmake)
-@@ -48,21 +58,6 @@ include(cmake/recursive_library.cmake)
- include(cmake/shared_libs.cmake)
- include(cmake/swig.cmake)
- 
--if (CMAKE_CROSSCOMPILING)
--  include(${PROJECT_BINARY_DIR}/conan_paths.cmake)
--else()
--  conan_cmake_autodetect(settings)
--  conan_cmake_install(
--    PATH_OR_REFERENCE ${PROJECT_SOURCE_DIR}
--    INSTALL_FOLDER ${PROJECT_BINARY_DIR}
--    BUILD missing
--    REMOTE conancenter
--    SETTINGS ${settings}
--    ENV "CONAN_CMAKE_GENERATOR=${CMAKE_GENERATOR}"
--    CONF "tools.cmake.cmaketoolchain:generator=${CMAKE_GENERATOR}"
--  )
--endif()
--
- 
- if (CMAKE_SYSTEM_NAME STREQUAL "Linux" AND CMAKE_SYSTEM_PROCESSOR STREQUAL "x86_64" AND NOT HAVE_CUDA)
-   include(CMakeLists.linux-x86_64.txt)
- elseif (CMAKE_SYSTEM_NAME STREQUAL "Linux" AND CMAKE_SYSTEM_PROCESSOR STREQUAL "x86_64" AND HAVE_CUDA)
 diff --git a/build/toolchains/clang.toolchain b/build/toolchains/clang.toolchain
-index 7cb81ff061..e11ae974d0 100644
+index 7cb81ff061..a2fb977b04 100644
 --- a/build/toolchains/clang.toolchain
 +++ b/build/toolchains/clang.toolchain
-@@ -1,11 +1,7 @@
+@@ -1,11 +1,8 @@
 -set(CMAKE_C_COMPILER clang)
 -set(CMAKE_CXX_COMPILER clang++)
--
+ 
  set(CMAKE_C_STANDARD_LIBRARIES "-lc -lm")
  set(CMAKE_CXX_STANDARD_LIBRARIES "-lc -lm")
  
@@ -67,7 +36,7 @@ index 7cb81ff061..e11ae974d0 100644
  
  set(CMAKE_CUDA_FLAGS_INIT "--allow-unsupported-compiler")
  
-@@ -14,9 +10,6 @@ if (NOT APPLE)
+@@ -14,9 +11,6 @@ if (NOT APPLE)
    set(CMAKE_SHARED_LINKER_FLAGS -fuse-ld=lld)
  endif()
  
@@ -77,3 +46,191 @@ index 7cb81ff061..e11ae974d0 100644
  set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
  set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
  set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
+diff --git a/contrib/libs/cxxsupp/CMakeLists.linux-aarch64.txt b/contrib/libs/cxxsupp/CMakeLists.linux-aarch64.txt
+index a660fcaeda..871123ae20 100644
+--- a/contrib/libs/cxxsupp/CMakeLists.linux-aarch64.txt
++++ b/contrib/libs/cxxsupp/CMakeLists.linux-aarch64.txt
+@@ -12,7 +12,12 @@
+ # Please refer to the build instructions in the repository for more information about manual
+ # changes in this file.
+ 
+-add_subdirectory(libcxx)
++if (CMAKE_CXX_COMPILER_VERSION VERSION_LESS 16)
++    add_subdirectory(libcxxcuda11)
++else ()
++    add_subdirectory(libcxx)
++endif()
++
+ add_subdirectory(libcxxabi-parts)
+ add_subdirectory(libcxxrt)
+ add_subdirectory(builtins)
+@@ -22,6 +27,16 @@ add_library(contrib-libs-cxxsupp INTERFACE)
+ 
+ target_link_libraries(contrib-libs-cxxsupp INTERFACE
+   contrib-libs-linux-headers
+-  libs-cxxsupp-libcxx
+ )
+ 
++if (CMAKE_CXX_COMPILER_VERSION VERSION_LESS 16)
++    target_link_libraries(contrib-libs-cxxsupp INTERFACE
++      libs-cxxsupp-libcxxcuda11
++    )
++else ()
++    target_link_libraries(contrib-libs-cxxsupp INTERFACE
++      libs-cxxsupp-libcxx
++    )
++endif()
++
++
+diff --git a/contrib/libs/cxxsupp/CMakeLists.linux-ppc64le.txt b/contrib/libs/cxxsupp/CMakeLists.linux-ppc64le.txt
+index a660fcaeda..871123ae20 100644
+--- a/contrib/libs/cxxsupp/CMakeLists.linux-ppc64le.txt
++++ b/contrib/libs/cxxsupp/CMakeLists.linux-ppc64le.txt
+@@ -12,7 +12,12 @@
+ # Please refer to the build instructions in the repository for more information about manual
+ # changes in this file.
+ 
+-add_subdirectory(libcxx)
++if (CMAKE_CXX_COMPILER_VERSION VERSION_LESS 16)
++    add_subdirectory(libcxxcuda11)
++else ()
++    add_subdirectory(libcxx)
++endif()
++
+ add_subdirectory(libcxxabi-parts)
+ add_subdirectory(libcxxrt)
+ add_subdirectory(builtins)
+@@ -22,6 +27,16 @@ add_library(contrib-libs-cxxsupp INTERFACE)
+ 
+ target_link_libraries(contrib-libs-cxxsupp INTERFACE
+   contrib-libs-linux-headers
+-  libs-cxxsupp-libcxx
+ )
+ 
++if (CMAKE_CXX_COMPILER_VERSION VERSION_LESS 16)
++    target_link_libraries(contrib-libs-cxxsupp INTERFACE
++      libs-cxxsupp-libcxxcuda11
++    )
++else ()
++    target_link_libraries(contrib-libs-cxxsupp INTERFACE
++      libs-cxxsupp-libcxx
++    )
++endif()
++
++
+diff --git a/contrib/libs/cxxsupp/CMakeLists.linux-x86_64.txt b/contrib/libs/cxxsupp/CMakeLists.linux-x86_64.txt
+index a660fcaeda..871123ae20 100644
+--- a/contrib/libs/cxxsupp/CMakeLists.linux-x86_64.txt
++++ b/contrib/libs/cxxsupp/CMakeLists.linux-x86_64.txt
+@@ -12,7 +12,12 @@
+ # Please refer to the build instructions in the repository for more information about manual
+ # changes in this file.
+ 
+-add_subdirectory(libcxx)
++if (CMAKE_CXX_COMPILER_VERSION VERSION_LESS 16)
++    add_subdirectory(libcxxcuda11)
++else ()
++    add_subdirectory(libcxx)
++endif()
++
+ add_subdirectory(libcxxabi-parts)
+ add_subdirectory(libcxxrt)
+ add_subdirectory(builtins)
+@@ -22,6 +27,16 @@ add_library(contrib-libs-cxxsupp INTERFACE)
+ 
+ target_link_libraries(contrib-libs-cxxsupp INTERFACE
+   contrib-libs-linux-headers
+-  libs-cxxsupp-libcxx
+ )
+ 
++if (CMAKE_CXX_COMPILER_VERSION VERSION_LESS 16)
++    target_link_libraries(contrib-libs-cxxsupp INTERFACE
++      libs-cxxsupp-libcxxcuda11
++    )
++else ()
++    target_link_libraries(contrib-libs-cxxsupp INTERFACE
++      libs-cxxsupp-libcxx
++    )
++endif()
++
++
+diff --git a/contrib/libs/cxxsupp/builtins/CMakeLists.linux-aarch64-cuda.txt b/contrib/libs/cxxsupp/builtins/CMakeLists.linux-aarch64-cuda.txt
+index fd3c4bf84f..765cab60c3 100644
+--- a/contrib/libs/cxxsupp/builtins/CMakeLists.linux-aarch64-cuda.txt
++++ b/contrib/libs/cxxsupp/builtins/CMakeLists.linux-aarch64-cuda.txt
+@@ -24,16 +24,16 @@ target_link_libraries(libs-cxxsupp-builtins PUBLIC
+ )
+ 
+ target_sources(libs-cxxsupp-builtins PRIVATE
+-  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/extendbfsf2.c
+-  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/truncdfbf2.c
+-  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/truncxfbf2.c
+-  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/truncsfbf2.c
+-  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/trunctfbf2.c
+-  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/aarch64/chkstk.S
+-  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/aarch64/fp_mode.c
+-  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/aarch64/sme-abi-assert.c
+-  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/aarch64/sme-abi.S
+-  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/aarch64/sme-libc-mem-routines.S
++  # ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/extendbfsf2.c
++  # ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/truncdfbf2.c
++  # ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/truncxfbf2.c
++  # ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/truncsfbf2.c
++  # ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/trunctfbf2.c
++  # ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/aarch64/chkstk.S
++  # ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/aarch64/fp_mode.c
++  # ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/aarch64/sme-abi-assert.c
++  # ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/aarch64/sme-abi.S
++  # ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/aarch64/sme-libc-mem-routines.S
+   ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/absvdi2.c
+   ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/absvsi2.c
+   ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/absvti2.c
+@@ -185,7 +185,7 @@ target_sources(libs-cxxsupp-builtins PRIVATE
+   ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/umoddi3.c
+   ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/umodsi3.c
+   ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/umodti3.c
+-  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/aarch64/sme-libc-routines.c
++  # ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/aarch64/sme-libc-routines.c
+   ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/crtbegin.c
+   ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/crtend.c
+ )
+diff --git a/contrib/libs/cxxsupp/builtins/CMakeLists.linux-aarch64.txt b/contrib/libs/cxxsupp/builtins/CMakeLists.linux-aarch64.txt
+index fd3c4bf84f..765cab60c3 100644
+--- a/contrib/libs/cxxsupp/builtins/CMakeLists.linux-aarch64.txt
++++ b/contrib/libs/cxxsupp/builtins/CMakeLists.linux-aarch64.txt
+@@ -24,16 +24,16 @@ target_link_libraries(libs-cxxsupp-builtins PUBLIC
+ )
+ 
+ target_sources(libs-cxxsupp-builtins PRIVATE
+-  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/extendbfsf2.c
+-  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/truncdfbf2.c
+-  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/truncxfbf2.c
+-  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/truncsfbf2.c
+-  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/trunctfbf2.c
+-  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/aarch64/chkstk.S
+-  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/aarch64/fp_mode.c
+-  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/aarch64/sme-abi-assert.c
+-  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/aarch64/sme-abi.S
+-  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/aarch64/sme-libc-mem-routines.S
++  # ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/extendbfsf2.c
++  # ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/truncdfbf2.c
++  # ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/truncxfbf2.c
++  # ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/truncsfbf2.c
++  # ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/trunctfbf2.c
++  # ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/aarch64/chkstk.S
++  # ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/aarch64/fp_mode.c
++  # ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/aarch64/sme-abi-assert.c
++  # ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/aarch64/sme-abi.S
++  # ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/aarch64/sme-libc-mem-routines.S
+   ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/absvdi2.c
+   ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/absvsi2.c
+   ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/absvti2.c
+@@ -185,7 +185,7 @@ target_sources(libs-cxxsupp-builtins PRIVATE
+   ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/umoddi3.c
+   ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/umodsi3.c
+   ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/umodti3.c
+-  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/aarch64/sme-libc-routines.c
++  # ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/aarch64/sme-libc-routines.c
+   ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/crtbegin.c
+   ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/crtend.c
+ )
