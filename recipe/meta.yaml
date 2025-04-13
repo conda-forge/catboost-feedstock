@@ -71,6 +71,7 @@ requirements:
     - setuptools
     - cython ~=3.0.10
     - numpy
+    - cmake >=3.24                # [unix]
     - cuda-version {{ cuda_compiler_version }}  # [cuda_compiler_version != "None"]
     {% if cuda_major >= 12 %}
     - cuda-driver-dev
