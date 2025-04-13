@@ -46,6 +46,31 @@ index 7cb81ff061..a2fb977b04 100644
  set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
  set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
  set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
+diff --git a/catboost/python-package/pyproject.toml b/catboost/python-package/pyproject.toml
+index e864b0738d..82e64d6d5e 100644
+--- a/catboost/python-package/pyproject.toml
++++ b/catboost/python-package/pyproject.toml
+@@ -4,7 +4,6 @@ requires = [
+     "cmake",
+     "wheel",
+     "jupyterlab (>=3.0.6, <3.6.0)",
+-    "conan ~= 2.4.1",
+     "cython ~= 3.0.10",
+     "numpy"
+ ]
+diff --git a/catboost/python-package/setup.py b/catboost/python-package/setup.py
+index 0cef47c1ab..c5d39327a8 100644
+--- a/catboost/python-package/setup.py
++++ b/catboost/python-package/setup.py
+@@ -95,7 +95,7 @@ def setup_hnsw_submodule(argv, extensions):
+ 
+ 
+ def get_setup_requires(argv):
+-    setup_requires = ['cmake', 'wheel', 'conan ~= 2.4.1', 'cython ~= 3.0.10', 'numpy']
++    setup_requires = ['cmake', 'wheel', 'cython ~= 3.0.10', 'numpy']
+ 
+     if ('build_widget' in argv) or (not ('--no-widget' in argv)):
+         setup_requires += ['jupyterlab (>=3.0.6, <3.6.0)']
 diff --git a/contrib/libs/cxxsupp/CMakeLists.linux-aarch64.txt b/contrib/libs/cxxsupp/CMakeLists.linux-aarch64.txt
 index a660fcaeda..871123ae20 100644
 --- a/contrib/libs/cxxsupp/CMakeLists.linux-aarch64.txt
