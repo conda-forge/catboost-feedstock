@@ -11,7 +11,7 @@ Summary: Gradient boosting on decision trees library
 
 Development: https://github.com/catboost/catboost
 
-Documentation: https://catboost.ai/docs/concepts/about.html
+Documentation: https://catboost.ai/docs/
 
 General purpose gradient boosting on decision trees library with categorical features support out of the box.
 It is easy to install, contains fast inference implementation and supports CPU and GPU (even multi-GPU) computation.
