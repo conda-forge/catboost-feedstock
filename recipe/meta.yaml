@@ -23,7 +23,7 @@ build:
   number: {{ build_num }}
   # We build from source on Unix and re-package binaries on windows
   #  Yandex supplies whl files on PyPI for:
-  # - Win-64: Python 3.7, 3.8, 3.9, 3.10, 3.11, 3.12
+  # - Win-64: Python 3.8, 3.9, 3.10, 3.11, 3.12, 3.13
   skip: true  # [win32]
   skip: true  # [python_impl == 'pypy']
   # There are issues with python 3.8 on macOS 11.x: https://github.com/conda-forge/python-feedstock/issues/445
@@ -46,16 +46,19 @@ requirements:
   build:
     - python                                 # [build_platform != target_platform]
     - cross-python_{{ target_platform }}     # [build_platform != target_platform]
-    - cython                                 # [build_platform != target_platform]
+    - cython ~=3.0.10                        # [build_platform != target_platform]
+    - numpy                                  # [build_platform != target_platform]
     - jupyterlab 3.0.6.*                     # [unix and build_platform != target_platform]
     - ragel >=6.10                # [unix]
     - yasm >=1.3.0                # [unix]
     - swig >=4.0.2                # [unix]
-    - cmake >=3.18                # [unix]
+    - cmake >=3.24                # [unix]
     - make                        # [unix]
     - {{ compiler('cxx') }}       # [linux or osx]
     # clang 14 on conda-forge is non-functional
-    - clangxx >=15,<16            # [linux]
+    - clangxx >=15,<16            # [linux and cuda_compiler_version != "None"]
+    - clangxx >=16                # [linux and cuda_compiler_version == "None" and x86_64]
+    - clangxx >=18                # [linux and cuda_compiler_version == "None" and aarch64]
     - {{ stdlib('c') }}           # [unix]
     - {{ compiler('cuda') }}      # [unix and cuda_compiler_version != "None"]
     - lld >=7                     # [unix]
@@ -66,6 +69,8 @@ requirements:
     - python
     - pip
     - setuptools
+    - cython ~=3.0.10
+    - numpy
     - cuda-version {{ cuda_compiler_version }}  # [cuda_compiler_version != "None"]
     {% if cuda_major >= 12 %}
     - cuda-driver-dev
@@ -73,7 +78,7 @@ requirements:
     {% endif %}
   run:
     - python
-    - numpy >=1.16.0,<2
+    - numpy >=1.16.0
     - pandas >=0.24.0
     - scipy
     - six
