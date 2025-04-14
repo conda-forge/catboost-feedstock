@@ -1,6 +1,6 @@
 {% set version = "1.2.8" %}
 
-{% set build_num = 2 %}
+{% set build_num = 3 %}
 
 {% if cuda_compiler_version == "None" %}
 {% set cuda_major = 0 %}
