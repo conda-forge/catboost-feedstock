@@ -103,7 +103,6 @@ test:
   requires:
     - pip
     - scikit-learn
-    - shap
     - traitlets
     - ipython
     - ipywidgets >=7.0,<9.0

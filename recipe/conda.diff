@@ -46,6 +46,43 @@ index 7cb81ff061..a2fb977b04 100644
  set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
  set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
  set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
+diff --git a/catboost/pytest/smoke_tests/classification_tutorial_cpu.py b/catboost/pytest/smoke_tests/classification_tutorial_cpu.py
+index 0d140f566c..3ff63efbf7 100644
+--- a/catboost/pytest/smoke_tests/classification_tutorial_cpu.py
++++ b/catboost/pytest/smoke_tests/classification_tutorial_cpu.py
+@@ -42,7 +42,6 @@ except:
+ 
+ #!pip install --user --upgrade catboost
+ #!pip install --user --upgrade ipywidgets
+-#!pip install shap
+ #!pip install sklearn
+ #!pip install --upgrade numpy
+ #!jupyter nbextension enable --py widgetsnbextension
+@@ -643,24 +642,6 @@ shap_values = shap_values[:,:-1]
+ print(shap_values.shape)
+ 
+ 
+-import shap
+-shap.initjs()
+-shap.force_plot(expected_value, shap_values[3,:], X.iloc[3,:], show=False)
+-
+-
+-import shap
+-shap.initjs()
+-shap.force_plot(expected_value, shap_values[91,:], X.iloc[91,:], show=False)
+-
+-
+-shap.summary_plot(shap_values, X, show=False)
+-
+-
+-X_small = X.iloc[0:200]
+-shap_small = shap_values[:200]
+-shap.force_plot(expected_value, shap_small, X_small, show=False)
+-
+-
+ ### Feature evaluation
+ 
+ 
 diff --git a/catboost/python-package/pyproject.toml b/catboost/python-package/pyproject.toml
 index e864b0738d..d49f6f20d6 100644
 --- a/catboost/python-package/pyproject.toml
