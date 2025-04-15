@@ -24,12 +24,7 @@ build:
   # We build from source on Unix and re-package binaries on windows
   #  Yandex supplies whl files on PyPI for:
   # - Win-64: Python 3.8, 3.9, 3.10, 3.11, 3.12, 3.13
-  skip: true  # [win32]
-  skip: true  # [python_impl == 'pypy']
-  # There are issues with python 3.8 on macOS 11.x: https://github.com/conda-forge/python-feedstock/issues/445
-  #  so Conda has issues with tags compatibility with platform tags 'macosx_11_0_...'
-  #  so disable this configuration for now
-  skip: true  # [osx and x86_64 and (py == 38)]
+
   # TODO: support Linux on ppc64le: https://github.com/catboost/catboost/issues/2145
   skip: true  # [ppc64le]
   # Wheels from PyPI have a single version that already contains CUDA support so do not do separate builds on Windows,
