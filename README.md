@@ -485,6 +485,3 @@ Feedstock Maintainers
 * [@nikitxskv](https://github.com/nikitxskv/)
 * [@sab](https://github.com/sab/)
 
-
-<!-- dummy commit to enable rerendering -->
-
