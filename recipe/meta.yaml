@@ -2,10 +2,7 @@
 
 {% set build_num = 5 %}
 
-{% if cuda_compiler_version == "None" %}
-{% set cuda_major = 0 %}
-{% else %}
-{% set cuda_major = environ.get("cuda_compiler_version", "11.8").split(".")[0] | int %}
+{% if cuda_compiler_version != "None" %}
 {% set build_num = build_num + 100 %}
 {% endif %}
 
@@ -67,10 +64,8 @@ requirements:
     - cython ~=3.0.10
     - numpy
     - cuda-version {{ cuda_compiler_version }}  # [cuda_compiler_version != "None"]
-    {% if cuda_major >= 12 %}
-    - cuda-driver-dev
-    - cuda-cudart-dev
-    {% endif %}
+    - cuda-driver-dev                           # [cuda_compiler_version != "None"]
+    - cuda-cudart-dev                           # [cuda_compiler_version != "None"]
   run:
     - python
     - numpy >=1.16.0
