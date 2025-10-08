@@ -71,6 +71,11 @@ if [[ "$cuda_compiler_version" != "None" ]]; then
   find . -name "CMakeLists*.txt" -type f -print0 | xargs -0 sed -i "s/-lcudadevrt/-lcudart/g"
   find . -name "CMakeLists*.txt" -type f -print0 | xargs -0 sed -i "s/-lculibos/-lcudart/g"
   CMAKE_ARGS="${CMAKE_ARGS} -DHAVE_CUDA=ON"
+
+  # nvcc does not support libc++ in newer cuda, but this seems to work just fine
+  # and LLVM's test-suite adds this option
+  # https://github.com/llvm/llvm-test-suite/blob/0cae4adfc2283674625587966932deeb7fd298d2/External/CUDA/CMakeLists.txt#L355
+  export CXXFLAGS="${CXXFLAGS} -D_ALLOW_UNSUPPORTED_LIBCPP"
 fi
 
 # restrict CUDA compilation parallelism
