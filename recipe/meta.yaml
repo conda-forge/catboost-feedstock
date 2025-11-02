@@ -28,6 +28,7 @@ build:
   # just have a single version for now
   # TODO: build from source on Windows
   skip: true  # [win and cuda_compiler_version != "None"]
+  skip: true  # [win and py == 314]
   string: cuda{{ cuda_compiler_version | replace('.', '') }}_py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [unix and cuda_compiler_version != "None"]
   string: cpu_py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [unix and cuda_compiler_version == "None"]
   # de-prioritize the CPU variants
