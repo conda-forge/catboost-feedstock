@@ -1,6 +1,6 @@
 {% set version = "1.2.8" %}
 
-{% set build_num = 5 %}
+{% set build_num = 6 %}
 
 {% if cuda_compiler_version != "None" %}
 {% set build_num = build_num + 100 %}
@@ -103,7 +103,6 @@ test:
 about:
   home: http://catboost.ai
   license: Apache-2.0
-  license_family: MIT
   license_file: LICENSE
   license_url: https://github.com/catboost/catboost/blob/master/LICENSE
   summary: 'Gradient boosting on decision trees library'
