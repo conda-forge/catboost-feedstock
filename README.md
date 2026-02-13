@@ -35,283 +35,143 @@ Current build status
         <table>
           <thead><tr><th>Variant</th><th>Status</th></tr></thead>
           <tbody><tr>
-              <td>linux_64_cuda_compiler_targets50-virtual;60-virtual;61-real;70-virtual;75-real;80-real;86-real;89-real;90cuda_compiler_version12.0cxx_compiler_version12python3.10.____cpython</td>
+              <td>linux_64_cuda_compiler_version12.0cxx_compiler_version12python3.10.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=3796&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/catboost-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_cuda_compiler_targets50-virtual;60-virtual;61-real;70-virtual;75-real;80-real;86-real;89-real;90cuda_compiler_version12.0cxx_compiler_version12python3.10.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/catboost-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_cuda_compiler_version12.0cxx_compiler_version12python3.10.____cpython" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_cuda_compiler_targets50-virtual;60-virtual;61-real;70-virtual;75-real;80-real;86-real;89-real;90cuda_compiler_version12.0cxx_compiler_version12python3.11.____cpython</td>
+              <td>linux_64_cuda_compiler_version12.0cxx_compiler_version12python3.11.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=3796&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/catboost-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_cuda_compiler_targets50-virtual;60-virtual;61-real;70-virtual;75-real;80-real;86-real;89-real;90cuda_compiler_version12.0cxx_compiler_version12python3.11.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/catboost-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_cuda_compiler_version12.0cxx_compiler_version12python3.11.____cpython" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_cuda_compiler_targets50-virtual;60-virtual;61-real;70-virtual;75-real;80-real;86-real;89-real;90cuda_compiler_version12.0cxx_compiler_version12python3.12.____cpython</td>
+              <td>linux_64_cuda_compiler_version12.0cxx_compiler_version12python3.12.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=3796&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/catboost-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_cuda_compiler_targets50-virtual;60-virtual;61-real;70-virtual;75-real;80-real;86-real;89-real;90cuda_compiler_version12.0cxx_compiler_version12python3.12.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/catboost-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_cuda_compiler_version12.0cxx_compiler_version12python3.12.____cpython" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_cuda_compiler_targets50-virtual;60-virtual;61-real;70-virtual;75-real;80-real;86-real;89-real;90cuda_compiler_version12.0cxx_compiler_version12python3.13.____cp313</td>
+              <td>linux_64_cuda_compiler_version12.0cxx_compiler_version12python3.13.____cp313</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=3796&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/catboost-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_cuda_compiler_targets50-virtual;60-virtual;61-real;70-virtual;75-real;80-real;86-real;89-real;90cuda_compiler_version12.0cxx_compiler_version12python3.13.____cp313" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/catboost-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_cuda_compiler_version12.0cxx_compiler_version12python3.13.____cp313" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_cuda_compiler_targets50-virtual;60-virtual;61-real;70-virtual;75-real;80-real;86-real;89-real;90cuda_compiler_version12.0cxx_compiler_version12python3.14.____cp314</td>
+              <td>linux_64_cuda_compiler_version12.0cxx_compiler_version12python3.14.____cp314</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=3796&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/catboost-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_cuda_compiler_targets50-virtual;60-virtual;61-real;70-virtual;75-real;80-real;86-real;89-real;90cuda_compiler_version12.0cxx_compiler_version12python3.14.____cp314" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/catboost-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_cuda_compiler_version12.0cxx_compiler_version12python3.14.____cp314" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_cuda_compiler_targets50-virtual;60-virtual;61-real;70-virtual;75-real;80-real;86-real;89-real;90cuda_compiler_versionNonecxx_compiler_version14python3.10.____cpython</td>
+              <td>linux_64_cuda_compiler_versionNonecxx_compiler_version14python3.10.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=3796&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/catboost-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_cuda_compiler_targets50-virtual;60-virtual;61-real;70-virtual;75-real;80-real;86-real;89-real;90cuda_compiler_versionNonecxx_compiler_version14python3.10.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/catboost-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_cuda_compiler_versionNonecxx_compiler_version14python3.10.____cpython" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_cuda_compiler_targets50-virtual;60-virtual;61-real;70-virtual;75-real;80-real;86-real;89-real;90cuda_compiler_versionNonecxx_compiler_version14python3.11.____cpython</td>
+              <td>linux_64_cuda_compiler_versionNonecxx_compiler_version14python3.11.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=3796&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/catboost-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_cuda_compiler_targets50-virtual;60-virtual;61-real;70-virtual;75-real;80-real;86-real;89-real;90cuda_compiler_versionNonecxx_compiler_version14python3.11.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/catboost-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_cuda_compiler_versionNonecxx_compiler_version14python3.11.____cpython" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_cuda_compiler_targets50-virtual;60-virtual;61-real;70-virtual;75-real;80-real;86-real;89-real;90cuda_compiler_versionNonecxx_compiler_version14python3.12.____cpython</td>
+              <td>linux_64_cuda_compiler_versionNonecxx_compiler_version14python3.12.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=3796&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/catboost-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_cuda_compiler_targets50-virtual;60-virtual;61-real;70-virtual;75-real;80-real;86-real;89-real;90cuda_compiler_versionNonecxx_compiler_version14python3.12.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/catboost-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_cuda_compiler_versionNonecxx_compiler_version14python3.12.____cpython" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_cuda_compiler_targets50-virtual;60-virtual;61-real;70-virtual;75-real;80-real;86-real;89-real;90cuda_compiler_versionNonecxx_compiler_version14python3.13.____cp313</td>
+              <td>linux_64_cuda_compiler_versionNonecxx_compiler_version14python3.13.____cp313</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=3796&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/catboost-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_cuda_compiler_targets50-virtual;60-virtual;61-real;70-virtual;75-real;80-real;86-real;89-real;90cuda_compiler_versionNonecxx_compiler_version14python3.13.____cp313" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/catboost-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_cuda_compiler_versionNonecxx_compiler_version14python3.13.____cp313" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_cuda_compiler_targets50-virtual;60-virtual;61-real;70-virtual;75-real;80-real;86-real;89-real;90cuda_compiler_versionNonecxx_compiler_version14python3.14.____cp314</td>
+              <td>linux_64_cuda_compiler_versionNonecxx_compiler_version14python3.14.____cp314</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=3796&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/catboost-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_cuda_compiler_targets50-virtual;60-virtual;61-real;70-virtual;75-real;80-real;86-real;89-real;90cuda_compiler_versionNonecxx_compiler_version14python3.14.____cp314" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/catboost-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_cuda_compiler_versionNonecxx_compiler_version14python3.14.____cp314" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_cuda_compiler_targetscuda_compiler_version12.0cxx_compiler_version12python3.10.____cpython</td>
+              <td>linux_aarch64_cuda_compiler_version12.0cxx_compiler_version12python3.10.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=3796&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/catboost-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_cuda_compiler_targetscuda_compiler_version12.0cxx_compiler_version12python3.10.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/catboost-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_cuda_compiler_version12.0cxx_compiler_version12python3.10.____cpython" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_cuda_compiler_targetscuda_compiler_version12.0cxx_compiler_version12python3.11.____cpython</td>
+              <td>linux_aarch64_cuda_compiler_version12.0cxx_compiler_version12python3.11.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=3796&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/catboost-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_cuda_compiler_targetscuda_compiler_version12.0cxx_compiler_version12python3.11.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/catboost-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_cuda_compiler_version12.0cxx_compiler_version12python3.11.____cpython" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_cuda_compiler_targetscuda_compiler_version12.0cxx_compiler_version12python3.12.____cpython</td>
+              <td>linux_aarch64_cuda_compiler_version12.0cxx_compiler_version12python3.12.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=3796&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/catboost-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_cuda_compiler_targetscuda_compiler_version12.0cxx_compiler_version12python3.12.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/catboost-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_cuda_compiler_version12.0cxx_compiler_version12python3.12.____cpython" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_cuda_compiler_targetscuda_compiler_version12.0cxx_compiler_version12python3.13.____cp313</td>
+              <td>linux_aarch64_cuda_compiler_version12.0cxx_compiler_version12python3.13.____cp313</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=3796&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/catboost-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_cuda_compiler_targetscuda_compiler_version12.0cxx_compiler_version12python3.13.____cp313" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/catboost-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_cuda_compiler_version12.0cxx_compiler_version12python3.13.____cp313" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_cuda_compiler_targetscuda_compiler_version12.0cxx_compiler_version12python3.14.____cp314</td>
+              <td>linux_aarch64_cuda_compiler_version12.0cxx_compiler_version12python3.14.____cp314</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=3796&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/catboost-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_cuda_compiler_targetscuda_compiler_version12.0cxx_compiler_version12python3.14.____cp314" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/catboost-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_cuda_compiler_version12.0cxx_compiler_version12python3.14.____cp314" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_cuda_compiler_targetscuda_compiler_versionNonecxx_compiler_version14python3.10.____cpython</td>
+              <td>linux_aarch64_cuda_compiler_versionNonecxx_compiler_version14python3.10.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=3796&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/catboost-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_cuda_compiler_targetscuda_compiler_versionNonecxx_compiler_version14python3.10.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/catboost-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_cuda_compiler_versionNonecxx_compiler_version14python3.10.____cpython" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_cuda_compiler_targetscuda_compiler_versionNonecxx_compiler_version14python3.11.____cpython</td>
+              <td>linux_aarch64_cuda_compiler_versionNonecxx_compiler_version14python3.11.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=3796&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/catboost-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_cuda_compiler_targetscuda_compiler_versionNonecxx_compiler_version14python3.11.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/catboost-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_cuda_compiler_versionNonecxx_compiler_version14python3.11.____cpython" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_cuda_compiler_targetscuda_compiler_versionNonecxx_compiler_version14python3.12.____cpython</td>
+              <td>linux_aarch64_cuda_compiler_versionNonecxx_compiler_version14python3.12.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=3796&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/catboost-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_cuda_compiler_targetscuda_compiler_versionNonecxx_compiler_version14python3.12.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/catboost-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_cuda_compiler_versionNonecxx_compiler_version14python3.12.____cpython" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_cuda_compiler_targetscuda_compiler_versionNonecxx_compiler_version14python3.13.____cp313</td>
+              <td>linux_aarch64_cuda_compiler_versionNonecxx_compiler_version14python3.13.____cp313</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=3796&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/catboost-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_cuda_compiler_targetscuda_compiler_versionNonecxx_compiler_version14python3.13.____cp313" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/catboost-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_cuda_compiler_versionNonecxx_compiler_version14python3.13.____cp313" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_cuda_compiler_targetscuda_compiler_versionNonecxx_compiler_version14python3.14.____cp314</td>
+              <td>linux_aarch64_cuda_compiler_versionNonecxx_compiler_version14python3.14.____cp314</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=3796&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/catboost-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_cuda_compiler_targetscuda_compiler_versionNonecxx_compiler_version14python3.14.____cp314" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_aarch64_cuda_compiler_targets50-virtual;60-virtual;61-real;70-virtual;75-real;80-real;86-real;89-real;90cuda_compiler_version12.0cxx_compiler_version12python3.10.____cpython</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=3796&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/catboost-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_cuda_compiler_targets50-virtual;60-virtual;61-real;70-virtual;75-real;80-real;86-real;89-real;90cuda_compiler_version12.0cxx_compiler_version12python3.10.____cpython" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_aarch64_cuda_compiler_targets50-virtual;60-virtual;61-real;70-virtual;75-real;80-real;86-real;89-real;90cuda_compiler_version12.0cxx_compiler_version12python3.11.____cpython</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=3796&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/catboost-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_cuda_compiler_targets50-virtual;60-virtual;61-real;70-virtual;75-real;80-real;86-real;89-real;90cuda_compiler_version12.0cxx_compiler_version12python3.11.____cpython" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_aarch64_cuda_compiler_targets50-virtual;60-virtual;61-real;70-virtual;75-real;80-real;86-real;89-real;90cuda_compiler_version12.0cxx_compiler_version12python3.12.____cpython</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=3796&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/catboost-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_cuda_compiler_targets50-virtual;60-virtual;61-real;70-virtual;75-real;80-real;86-real;89-real;90cuda_compiler_version12.0cxx_compiler_version12python3.12.____cpython" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_aarch64_cuda_compiler_targets50-virtual;60-virtual;61-real;70-virtual;75-real;80-real;86-real;89-real;90cuda_compiler_version12.0cxx_compiler_version12python3.13.____cp313</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=3796&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/catboost-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_cuda_compiler_targets50-virtual;60-virtual;61-real;70-virtual;75-real;80-real;86-real;89-real;90cuda_compiler_version12.0cxx_compiler_version12python3.13.____cp313" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_aarch64_cuda_compiler_targets50-virtual;60-virtual;61-real;70-virtual;75-real;80-real;86-real;89-real;90cuda_compiler_version12.0cxx_compiler_version12python3.14.____cp314</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=3796&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/catboost-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_cuda_compiler_targets50-virtual;60-virtual;61-real;70-virtual;75-real;80-real;86-real;89-real;90cuda_compiler_version12.0cxx_compiler_version12python3.14.____cp314" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_aarch64_cuda_compiler_targets50-virtual;60-virtual;61-real;70-virtual;75-real;80-real;86-real;89-real;90cuda_compiler_versionNonecxx_compiler_version14python3.10.____cpython</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=3796&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/catboost-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_cuda_compiler_targets50-virtual;60-virtual;61-real;70-virtual;75-real;80-real;86-real;89-real;90cuda_compiler_versionNonecxx_compiler_version14python3.10.____cpython" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_aarch64_cuda_compiler_targets50-virtual;60-virtual;61-real;70-virtual;75-real;80-real;86-real;89-real;90cuda_compiler_versionNonecxx_compiler_version14python3.11.____cpython</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=3796&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/catboost-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_cuda_compiler_targets50-virtual;60-virtual;61-real;70-virtual;75-real;80-real;86-real;89-real;90cuda_compiler_versionNonecxx_compiler_version14python3.11.____cpython" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_aarch64_cuda_compiler_targets50-virtual;60-virtual;61-real;70-virtual;75-real;80-real;86-real;89-real;90cuda_compiler_versionNonecxx_compiler_version14python3.12.____cpython</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=3796&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/catboost-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_cuda_compiler_targets50-virtual;60-virtual;61-real;70-virtual;75-real;80-real;86-real;89-real;90cuda_compiler_versionNonecxx_compiler_version14python3.12.____cpython" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_aarch64_cuda_compiler_targets50-virtual;60-virtual;61-real;70-virtual;75-real;80-real;86-real;89-real;90cuda_compiler_versionNonecxx_compiler_version14python3.13.____cp313</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=3796&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/catboost-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_cuda_compiler_targets50-virtual;60-virtual;61-real;70-virtual;75-real;80-real;86-real;89-real;90cuda_compiler_versionNonecxx_compiler_version14python3.13.____cp313" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_aarch64_cuda_compiler_targets50-virtual;60-virtual;61-real;70-virtual;75-real;80-real;86-real;89-real;90cuda_compiler_versionNonecxx_compiler_version14python3.14.____cp314</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=3796&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/catboost-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_cuda_compiler_targets50-virtual;60-virtual;61-real;70-virtual;75-real;80-real;86-real;89-real;90cuda_compiler_versionNonecxx_compiler_version14python3.14.____cp314" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_aarch64_cuda_compiler_targetscuda_compiler_version12.0cxx_compiler_version12python3.10.____cpython</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=3796&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/catboost-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_cuda_compiler_targetscuda_compiler_version12.0cxx_compiler_version12python3.10.____cpython" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_aarch64_cuda_compiler_targetscuda_compiler_version12.0cxx_compiler_version12python3.11.____cpython</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=3796&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/catboost-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_cuda_compiler_targetscuda_compiler_version12.0cxx_compiler_version12python3.11.____cpython" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_aarch64_cuda_compiler_targetscuda_compiler_version12.0cxx_compiler_version12python3.12.____cpython</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=3796&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/catboost-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_cuda_compiler_targetscuda_compiler_version12.0cxx_compiler_version12python3.12.____cpython" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_aarch64_cuda_compiler_targetscuda_compiler_version12.0cxx_compiler_version12python3.13.____cp313</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=3796&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/catboost-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_cuda_compiler_targetscuda_compiler_version12.0cxx_compiler_version12python3.13.____cp313" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_aarch64_cuda_compiler_targetscuda_compiler_version12.0cxx_compiler_version12python3.14.____cp314</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=3796&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/catboost-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_cuda_compiler_targetscuda_compiler_version12.0cxx_compiler_version12python3.14.____cp314" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_aarch64_cuda_compiler_targetscuda_compiler_versionNonecxx_compiler_version14python3.10.____cpython</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=3796&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/catboost-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_cuda_compiler_targetscuda_compiler_versionNonecxx_compiler_version14python3.10.____cpython" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_aarch64_cuda_compiler_targetscuda_compiler_versionNonecxx_compiler_version14python3.11.____cpython</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=3796&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/catboost-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_cuda_compiler_targetscuda_compiler_versionNonecxx_compiler_version14python3.11.____cpython" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_aarch64_cuda_compiler_targetscuda_compiler_versionNonecxx_compiler_version14python3.12.____cpython</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=3796&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/catboost-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_cuda_compiler_targetscuda_compiler_versionNonecxx_compiler_version14python3.12.____cpython" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_aarch64_cuda_compiler_targetscuda_compiler_versionNonecxx_compiler_version14python3.13.____cp313</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=3796&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/catboost-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_cuda_compiler_targetscuda_compiler_versionNonecxx_compiler_version14python3.13.____cp313" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_aarch64_cuda_compiler_targetscuda_compiler_versionNonecxx_compiler_version14python3.14.____cp314</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=3796&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/catboost-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_cuda_compiler_targetscuda_compiler_versionNonecxx_compiler_version14python3.14.____cp314" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/catboost-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_cuda_compiler_versionNonecxx_compiler_version14python3.14.____cp314" alt="variant">
                 </a>
               </td>
             </tr><tr>

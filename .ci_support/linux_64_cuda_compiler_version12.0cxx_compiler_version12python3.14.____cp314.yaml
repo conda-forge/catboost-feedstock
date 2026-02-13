@@ -8,14 +8,12 @@ channel_targets:
 - conda-forge main
 cuda_compiler:
 - cuda-nvcc
-cuda_compiler_targets:
-- 50-virtual;60-virtual;61-real;70-virtual;75-real;80-real;86-real;89-real;90
 cuda_compiler_version:
-- None
+- '12.0'
 cxx_compiler:
 - gxx
 cxx_compiler_version:
-- '14'
+- '12'
 docker_image:
 - quay.io/condaforge/linux-anvil-x86_64:alma9
 numpy:
@@ -27,9 +25,9 @@ pin_run_as_build:
     min_pin: x.x
     max_pin: x.x
 python:
-- 3.11.* *_cpython
+- 3.14.* *_cp314
 target_platform:
-- linux-aarch64
+- linux-64
 zip_keys:
 - - cxx_compiler_version
   - c_stdlib_version

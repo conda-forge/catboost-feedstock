@@ -8,8 +8,6 @@ channel_targets:
 - conda-forge main
 cuda_compiler:
 - cuda-nvcc
-cuda_compiler_targets:
-- 50-virtual;60-virtual;61-real;70-virtual;75-real;80-real;86-real;89-real;90
 cuda_compiler_version:
 - '12.0'
 cxx_compiler:
@@ -27,9 +25,9 @@ pin_run_as_build:
     min_pin: x.x
     max_pin: x.x
 python:
-- 3.14.* *_cp314
+- 3.13.* *_cp313
 target_platform:
-- linux-64
+- linux-aarch64
 zip_keys:
 - - cxx_compiler_version
   - c_stdlib_version
