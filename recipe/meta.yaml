@@ -34,8 +34,6 @@ build:
   # de-prioritize the CPU variants
   track_features:   # [cuda_compiler_version == "None"]
     - catboost_cpu    # [cuda_compiler_version == "None"]
-  script_env:
-    - CUDAARCHS={{ cuda_compiler_targets }}
 
 requirements:
   build:
