@@ -1,4 +1,4 @@
-{% set version = "1.2.8" %}
+{% set version = "1.2.9rc0" %}
 
 {% set build_num = 6 %}
 
@@ -12,7 +12,7 @@ package:
 
 source:
   url: https://github.com/catboost/catboost/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 5b0c446cc48a1d1c38073cc20de0f191afd099222a97596d8bf148b04efbf7bd
+  sha256: 6c0c688a9f5d56bac504fcb0b68a7a00c85e3f55b4250067b6068d738ddb0f5c
   patches:
     - conda.diff
 
@@ -34,6 +34,8 @@ build:
   # de-prioritize the CPU variants
   track_features:   # [cuda_compiler_version == "None"]
     - catboost_cpu    # [cuda_compiler_version == "None"]
+  script_env:
+    - CUDAARCHS={{ cuda_compiler_targets }}
 
 requirements:
   build:

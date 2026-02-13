@@ -59,10 +59,6 @@ CMAKE_ARGS="${CMAKE_ARGS} -DPython3_INCLUDE_DIR:PATH=${Python3_INCLUDE_DIR}"
 CMAKE_ARGS="${CMAKE_ARGS} -DPython3_NumPy_INCLUDE_DIR=${Python3_NumPy_INCLUDE_DIR}"
 
 if [[ "$cuda_compiler_version" != "None" ]]; then
-  if [[ "$cuda_compiler_version" != "11.8" ]]; then
-    find . -name "CMakeLists*cuda.txt" -type f -print0 | xargs -0 sed -i -z -r "s/-gencode\s*=?arch=compute_35,code=sm_35//g"
-  fi
-
   # Link with shared version of `cudart` library instead of static.
   # cudadevrt and culibos are dependencies of libcudart_static.a and therefore need to be linked to if you are using the static version.
   # When using libcudart.so it has all the symbols of libcudart_static.a, libcudadevrt.a, libculibos.a and therefore all three can be replaced by the shared version.
