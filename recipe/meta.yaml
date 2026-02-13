@@ -11,7 +11,7 @@ package:
   version: {{ version }}
 
 source:
-  url: https://github.com/catboost/catboost/archive/refs/tags/v{{ version }}.tar.gz
+  url: https://github.com/andrey-khropov/catboost/archive/refs/tags/v{{ version }}.tar.gz
   sha256: 6c0c688a9f5d56bac504fcb0b68a7a00c85e3f55b4250067b6068d738ddb0f5c
   patches:
     - conda.diff
