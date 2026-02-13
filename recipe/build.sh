@@ -9,7 +9,7 @@ if [[ "$target_platform" == "linux-"* ]]; then
   export CXX=${HOST}-clang++
   export CC_FOR_BUILD=${BUILD}-clang
   export CXX_FOR_BUILD=${BUILD}-clang++
-  export NVCC_PREPEND_FLAGS="-ccbin=$BUILD_PREFIX/bin/${HOST}-clang++ --allow-unsupported-compiler"
+  export NVCC_PREPEND_FLAGS="-ccbin=$BUILD_PREFIX/bin/${HOST}-clang++ --allow-unsupported-compiler -std=c++17"
 fi
 
 if [[ "$target_platform" != "$build_platform" ]]; then
