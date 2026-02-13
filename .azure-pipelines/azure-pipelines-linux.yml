@@ -168,7 +168,6 @@ jobs:
         CONFIG: linux_aarch64_cuda_compiler_targetscuda_compiler_versionNonecxx_compiler_version14python3.14.____cp314
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
-    maxParallel: 37
   timeoutInMinutes: 360
   variables: {}
 
