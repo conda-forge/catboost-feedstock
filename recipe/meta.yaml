@@ -48,10 +48,8 @@ requirements:
     - cmake >=3.24                # [unix]
     - make                        # [unix]
     - {{ compiler('cxx') }}       # [linux or osx]
-    # clang 14 on conda-forge is non-functional
-    - clangxx >=15,<16            # [linux and cuda_compiler_version != "None"]
-    - clangxx >=16                # [linux and cuda_compiler_version == "None" and x86_64]
-    - clangxx >=18                # [linux and cuda_compiler_version == "None" and aarch64]
+    - clangxx >=16                # [linux and x86_64]
+    - clangxx >=18                # [linux and aarch64]
     - {{ stdlib('c') }}           # [unix]
     - {{ compiler('cuda') }}      # [unix and cuda_compiler_version != "None"]
     - lld >=7                     # [unix]
