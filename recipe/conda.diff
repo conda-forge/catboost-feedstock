@@ -220,10 +220,10 @@ index a660fcaeda..871123ae20 100644
 +
 +
 diff --git a/contrib/libs/cxxsupp/builtins/CMakeLists.linux-aarch64-cuda.txt b/contrib/libs/cxxsupp/builtins/CMakeLists.linux-aarch64-cuda.txt
-index 896ef42d3e..f693872d23 100644
+index 896ef42d3e..db7f92127e 100644
 --- a/contrib/libs/cxxsupp/builtins/CMakeLists.linux-aarch64-cuda.txt
 +++ b/contrib/libs/cxxsupp/builtins/CMakeLists.linux-aarch64-cuda.txt
-@@ -24,15 +24,6 @@ target_link_libraries(libs-cxxsupp-builtins PUBLIC
+@@ -24,15 +24,7 @@ target_link_libraries(libs-cxxsupp-builtins PUBLIC
  )
  
  target_sources(libs-cxxsupp-builtins PRIVATE
@@ -233,13 +233,13 @@ index 896ef42d3e..f693872d23 100644
 -  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/truncsfbf2.c
 -  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/trunctfbf2.c
 -  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/aarch64/chkstk.S
--  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/aarch64/fp_mode.c
+   ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/aarch64/fp_mode.c
 -  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/aarch64/sme-abi-assert.c
 -  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/aarch64/sme-abi.S
    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/absvdi2.c
    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/absvsi2.c
    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/absvti2.c
-@@ -185,8 +176,6 @@ target_sources(libs-cxxsupp-builtins PRIVATE
+@@ -185,8 +177,6 @@ target_sources(libs-cxxsupp-builtins PRIVATE
    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/umoddi3.c
    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/umodsi3.c
    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/umodti3.c
@@ -249,10 +249,10 @@ index 896ef42d3e..f693872d23 100644
    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/crtend.c
  )
 diff --git a/contrib/libs/cxxsupp/builtins/CMakeLists.linux-aarch64.txt b/contrib/libs/cxxsupp/builtins/CMakeLists.linux-aarch64.txt
-index 896ef42d3e..f693872d23 100644
+index 896ef42d3e..db7f92127e 100644
 --- a/contrib/libs/cxxsupp/builtins/CMakeLists.linux-aarch64.txt
 +++ b/contrib/libs/cxxsupp/builtins/CMakeLists.linux-aarch64.txt
-@@ -24,15 +24,6 @@ target_link_libraries(libs-cxxsupp-builtins PUBLIC
+@@ -24,15 +24,7 @@ target_link_libraries(libs-cxxsupp-builtins PUBLIC
  )
  
  target_sources(libs-cxxsupp-builtins PRIVATE
@@ -262,13 +262,13 @@ index 896ef42d3e..f693872d23 100644
 -  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/truncsfbf2.c
 -  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/trunctfbf2.c
 -  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/aarch64/chkstk.S
--  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/aarch64/fp_mode.c
+   ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/aarch64/fp_mode.c
 -  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/aarch64/sme-abi-assert.c
 -  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/aarch64/sme-abi.S
    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/absvdi2.c
    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/absvsi2.c
    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/absvti2.c
-@@ -185,8 +176,6 @@ target_sources(libs-cxxsupp-builtins PRIVATE
+@@ -185,8 +177,6 @@ target_sources(libs-cxxsupp-builtins PRIVATE
    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/umoddi3.c
    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/umodsi3.c
    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/umodti3.c
@@ -277,3 +277,78 @@ index 896ef42d3e..f693872d23 100644
    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/crtbegin.c
    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/crtend.c
  )
+diff --git a/contrib/libs/protoc/src/google/protobuf/compiler/java/context.h b/contrib/libs/protoc/src/google/protobuf/compiler/java/context.h
+index 57b994a8e3..ff03d28608 100644
+--- a/contrib/libs/protoc/src/google/protobuf/compiler/java/context.h
++++ b/contrib/libs/protoc/src/google/protobuf/compiler/java/context.h
+@@ -35,6 +35,7 @@
+ #include <vector>
+ 
+ #include "y_absl/container/flat_hash_map.h"
++#include "google/protobuf/compiler/java/field.h"
+ #include "google/protobuf/compiler/java/helpers.h"
+ #include "google/protobuf/compiler/java/options.h"
+ #include "google/protobuf/port.h"
+@@ -59,8 +60,6 @@ namespace protobuf {
+ namespace compiler {
+ namespace java {
+ 
+-struct FieldGeneratorInfo;
+-struct OneofGeneratorInfo;
+ // A context object holds the information that is shared among all code
+ // generators.
+ class Context {
+diff --git a/contrib/restricted/abseil-cpp-tstring/y_absl/container/internal/raw_hash_set.h b/contrib/restricted/abseil-cpp-tstring/y_absl/container/internal/raw_hash_set.h
+index bb750bc7f8..ac6e55e140 100644
+--- a/contrib/restricted/abseil-cpp-tstring/y_absl/container/internal/raw_hash_set.h
++++ b/contrib/restricted/abseil-cpp-tstring/y_absl/container/internal/raw_hash_set.h
+@@ -3026,13 +3026,13 @@ class raw_hash_set {
+   //   s.insert({"abc", 42});
+   std::pair<iterator, bool> insert(init_type&& value)
+       Y_ABSL_ATTRIBUTE_LIFETIME_BOUND
+-#if Y_ABSL_INTERNAL_CPLUSPLUS_LANG >= 202002L && (!defined(_MSC_VER) || defined(__clang__))
++#if Y_ABSL_INTERNAL_CPLUSPLUS_LANG >= 202002L && (defined(__clang__) && (__clang_major__ >= 16))
+     requires(!IsLifetimeBoundAssignmentFrom<init_type>::value)
+ #endif
+   {
+     return emplace(std::move(value));
+   }
+-#if Y_ABSL_INTERNAL_CPLUSPLUS_LANG >= 202002L && (!defined(_MSC_VER) || defined(__clang__))
++#if Y_ABSL_INTERNAL_CPLUSPLUS_LANG >= 202002L && (defined(__clang__) && (__clang_major__ >= 16))
+   std::pair<iterator, bool> insert(
+       init_type&& value Y_ABSL_INTERNAL_ATTRIBUTE_CAPTURED_BY(this))
+       Y_ABSL_ATTRIBUTE_LIFETIME_BOUND
+diff --git a/util/generic/ptr.h b/util/generic/ptr.h
+index 04cfe50a42..8e524925db 100644
+--- a/util/generic/ptr.h
++++ b/util/generic/ptr.h
+@@ -381,7 +381,7 @@ private:
+     T* T_;
+ };
+ 
+-template <typename T, typename... Args, class = std::enable_if_t<std::is_constructible_v<T, Args...>>>
++template <typename T, typename... Args>
+ [[nodiscard]] THolder<T> MakeHolder(Args&&... args) {
+     return THolder<T>(new T(std::forward<Args>(args)...));
+ }
+@@ -1029,17 +1029,17 @@ using TAtomicSharedPtr = TSharedPtr<T, TAtomicCounter, D>;
+ template <class T, class D = TDelete>
+ using TSimpleSharedPtr = TSharedPtr<T, TSimpleCounter, D>;
+ 
+-template <typename T, typename C, typename... Args, class = std::enable_if_t<std::is_constructible_v<T, Args...>>>
++template <typename T, typename C, typename... Args>
+ [[nodiscard]] TSharedPtr<T, C> MakeShared(Args&&... args) {
+     return new T{std::forward<Args>(args)...};
+ }
+ 
+-template <typename T, typename... Args, class = std::enable_if_t<std::is_constructible_v<T, Args...>>>
++template <typename T, typename... Args>
+ [[nodiscard]] inline TAtomicSharedPtr<T> MakeAtomicShared(Args&&... args) {
+     return MakeShared<T, TAtomicCounter>(std::forward<Args>(args)...);
+ }
+ 
+-template <typename T, typename... Args, class = std::enable_if_t<std::is_constructible_v<T, Args...>>>
++template <typename T, typename... Args>
+ [[nodiscard]] inline TSimpleSharedPtr<T> MakeSimpleShared(Args&&... args) {
+     return MakeShared<T, TSimpleCounter>(std::forward<Args>(args)...);
+ }
