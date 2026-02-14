@@ -1,4 +1,4 @@
-{% set version = "1.2.9rc0" %}
+{% set version = "1.2.9rc1" %}
 
 {% set build_num = 0 %}
 
@@ -12,7 +12,7 @@ package:
 
 source:
   url: https://github.com/andrey-khropov/catboost/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 6c0c688a9f5d56bac504fcb0b68a7a00c85e3f55b4250067b6068d738ddb0f5c
+  sha256: 64b30661f4df88fc869ca666bfe552522d57dc7337b8f93c3ea2a3c609618d03
   patches:
     - conda.diff
 
