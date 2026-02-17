@@ -1,4 +1,4 @@
-{% set version = "1.2.8" %}
+{% set version = "1.2.9" %}
 
 {% set build_num = 6 %}
 
@@ -12,7 +12,7 @@ package:
 
 source:
   url: https://github.com/catboost/catboost/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 5b0c446cc48a1d1c38073cc20de0f191afd099222a97596d8bf148b04efbf7bd
+  sha256: 08e875dfd62914b0848a4013e2fca7f4bb0416be6f59aa7312c56f180e0fa6eb
   patches:
     - conda.diff
 
