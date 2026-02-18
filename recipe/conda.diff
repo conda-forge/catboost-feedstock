@@ -110,6 +110,168 @@ index b4c1890b24..9ac885047b 100644
  
      if ('build_widget' in argv) or (not ('--no-widget' in argv)):
          setup_requires += ['jupyterlab (>=3.0.6, <3.6.0)']
+diff --git a/contrib/libs/cxxsupp/libcxxabi-parts/CMakeLists.linux-aarch64-cuda.txt b/contrib/libs/cxxsupp/libcxxabi-parts/CMakeLists.linux-aarch64-cuda.txt
+index 0b6df88fed..2d0fbb6635 100644
+--- a/contrib/libs/cxxsupp/libcxxabi-parts/CMakeLists.linux-aarch64-cuda.txt
++++ b/contrib/libs/cxxsupp/libcxxabi-parts/CMakeLists.linux-aarch64-cuda.txt
+@@ -28,10 +28,20 @@ target_compile_options(libs-cxxsupp-libcxxabi-parts PRIVATE
+ 
+ target_include_directories(libs-cxxsupp-libcxxabi-parts PRIVATE
+   ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxxabi/include
+-  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxx/include
+-  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxx
+ )
+ 
++if (CMAKE_CXX_COMPILER_VERSION VERSION_LESS 16)
++  target_include_directories(libs-cxxsupp-libcxxabi-parts PRIVATE
++    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxxcuda11/include
++    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxxcuda11
++  ) 
++else ()
++  target_include_directories(libs-cxxsupp-libcxxabi-parts PRIVATE
++    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxx/include
++    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxx
++  )
++endif()
++
+ target_link_libraries(libs-cxxsupp-libcxxabi-parts PUBLIC
+   contrib-libs-linux-headers
+ )
+diff --git a/contrib/libs/cxxsupp/libcxxabi-parts/CMakeLists.linux-aarch64.txt b/contrib/libs/cxxsupp/libcxxabi-parts/CMakeLists.linux-aarch64.txt
+index 0b6df88fed..2d0fbb6635 100644
+--- a/contrib/libs/cxxsupp/libcxxabi-parts/CMakeLists.linux-aarch64.txt
++++ b/contrib/libs/cxxsupp/libcxxabi-parts/CMakeLists.linux-aarch64.txt
+@@ -28,10 +28,20 @@ target_compile_options(libs-cxxsupp-libcxxabi-parts PRIVATE
+ 
+ target_include_directories(libs-cxxsupp-libcxxabi-parts PRIVATE
+   ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxxabi/include
+-  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxx/include
+-  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxx
+ )
+ 
++if (CMAKE_CXX_COMPILER_VERSION VERSION_LESS 16)
++  target_include_directories(libs-cxxsupp-libcxxabi-parts PRIVATE
++    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxxcuda11/include
++    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxxcuda11
++  ) 
++else ()
++  target_include_directories(libs-cxxsupp-libcxxabi-parts PRIVATE
++    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxx/include
++    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxx
++  )
++endif()
++
+ target_link_libraries(libs-cxxsupp-libcxxabi-parts PUBLIC
+   contrib-libs-linux-headers
+ )
+diff --git a/contrib/libs/cxxsupp/libcxxabi-parts/CMakeLists.linux-ppc64le-cuda.txt b/contrib/libs/cxxsupp/libcxxabi-parts/CMakeLists.linux-ppc64le-cuda.txt
+index 0b6df88fed..2d0fbb6635 100644
+--- a/contrib/libs/cxxsupp/libcxxabi-parts/CMakeLists.linux-ppc64le-cuda.txt
++++ b/contrib/libs/cxxsupp/libcxxabi-parts/CMakeLists.linux-ppc64le-cuda.txt
+@@ -28,10 +28,20 @@ target_compile_options(libs-cxxsupp-libcxxabi-parts PRIVATE
+ 
+ target_include_directories(libs-cxxsupp-libcxxabi-parts PRIVATE
+   ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxxabi/include
+-  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxx/include
+-  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxx
+ )
+ 
++if (CMAKE_CXX_COMPILER_VERSION VERSION_LESS 16)
++  target_include_directories(libs-cxxsupp-libcxxabi-parts PRIVATE
++    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxxcuda11/include
++    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxxcuda11
++  ) 
++else ()
++  target_include_directories(libs-cxxsupp-libcxxabi-parts PRIVATE
++    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxx/include
++    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxx
++  )
++endif()
++
+ target_link_libraries(libs-cxxsupp-libcxxabi-parts PUBLIC
+   contrib-libs-linux-headers
+ )
+diff --git a/contrib/libs/cxxsupp/libcxxabi-parts/CMakeLists.linux-ppc64le.txt b/contrib/libs/cxxsupp/libcxxabi-parts/CMakeLists.linux-ppc64le.txt
+index 0b6df88fed..2d0fbb6635 100644
+--- a/contrib/libs/cxxsupp/libcxxabi-parts/CMakeLists.linux-ppc64le.txt
++++ b/contrib/libs/cxxsupp/libcxxabi-parts/CMakeLists.linux-ppc64le.txt
+@@ -28,10 +28,20 @@ target_compile_options(libs-cxxsupp-libcxxabi-parts PRIVATE
+ 
+ target_include_directories(libs-cxxsupp-libcxxabi-parts PRIVATE
+   ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxxabi/include
+-  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxx/include
+-  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxx
+ )
+ 
++if (CMAKE_CXX_COMPILER_VERSION VERSION_LESS 16)
++  target_include_directories(libs-cxxsupp-libcxxabi-parts PRIVATE
++    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxxcuda11/include
++    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxxcuda11
++  ) 
++else ()
++  target_include_directories(libs-cxxsupp-libcxxabi-parts PRIVATE
++    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxx/include
++    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxx
++  )
++endif()
++
+ target_link_libraries(libs-cxxsupp-libcxxabi-parts PUBLIC
+   contrib-libs-linux-headers
+ )
+diff --git a/contrib/libs/cxxsupp/libcxxabi-parts/CMakeLists.linux-x86_64-cuda.txt b/contrib/libs/cxxsupp/libcxxabi-parts/CMakeLists.linux-x86_64-cuda.txt
+index 0b6df88fed..2d0fbb6635 100644
+--- a/contrib/libs/cxxsupp/libcxxabi-parts/CMakeLists.linux-x86_64-cuda.txt
++++ b/contrib/libs/cxxsupp/libcxxabi-parts/CMakeLists.linux-x86_64-cuda.txt
+@@ -28,10 +28,20 @@ target_compile_options(libs-cxxsupp-libcxxabi-parts PRIVATE
+ 
+ target_include_directories(libs-cxxsupp-libcxxabi-parts PRIVATE
+   ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxxabi/include
+-  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxx/include
+-  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxx
+ )
+ 
++if (CMAKE_CXX_COMPILER_VERSION VERSION_LESS 16)
++  target_include_directories(libs-cxxsupp-libcxxabi-parts PRIVATE
++    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxxcuda11/include
++    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxxcuda11
++  ) 
++else ()
++  target_include_directories(libs-cxxsupp-libcxxabi-parts PRIVATE
++    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxx/include
++    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxx
++  )
++endif()
++
+ target_link_libraries(libs-cxxsupp-libcxxabi-parts PUBLIC
+   contrib-libs-linux-headers
+ )
+diff --git a/contrib/libs/cxxsupp/libcxxabi-parts/CMakeLists.linux-x86_64.txt b/contrib/libs/cxxsupp/libcxxabi-parts/CMakeLists.linux-x86_64.txt
+index 0b6df88fed..2d0fbb6635 100644
+--- a/contrib/libs/cxxsupp/libcxxabi-parts/CMakeLists.linux-x86_64.txt
++++ b/contrib/libs/cxxsupp/libcxxabi-parts/CMakeLists.linux-x86_64.txt
+@@ -28,10 +28,20 @@ target_compile_options(libs-cxxsupp-libcxxabi-parts PRIVATE
+ 
+ target_include_directories(libs-cxxsupp-libcxxabi-parts PRIVATE
+   ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxxabi/include
+-  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxx/include
+-  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxx
+ )
+ 
++if (CMAKE_CXX_COMPILER_VERSION VERSION_LESS 16)
++  target_include_directories(libs-cxxsupp-libcxxabi-parts PRIVATE
++    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxxcuda11/include
++    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxxcuda11
++  ) 
++else ()
++  target_include_directories(libs-cxxsupp-libcxxabi-parts PRIVATE
++    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxx/include
++    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxx
++  )
++endif()
++
+ target_link_libraries(libs-cxxsupp-libcxxabi-parts PUBLIC
+   contrib-libs-linux-headers
+ )
 diff --git a/contrib/libs/cxxsupp/CMakeLists.linux-aarch64.txt b/contrib/libs/cxxsupp/CMakeLists.linux-aarch64.txt
 index a660fcaeda..871123ae20 100644
 --- a/contrib/libs/cxxsupp/CMakeLists.linux-aarch64.txt
