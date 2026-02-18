@@ -20,7 +20,7 @@ index 93f044a17e..409dd86785 100644
  set(CMAKE_CXX_STANDARD 20)
  set(CMAKE_CXX_EXTENSIONS Off)
 diff --git a/build/toolchains/clang.toolchain b/build/toolchains/clang.toolchain
-index c5a3fe750e..97bc72a431 100644
+index c5a3fe750e..a2fb977b04 100644
 --- a/build/toolchains/clang.toolchain
 +++ b/build/toolchains/clang.toolchain
 @@ -1,11 +1,8 @@
@@ -35,15 +35,17 @@ index c5a3fe750e..97bc72a431 100644
  
  set(CMAKE_CUDA_FLAGS_INIT "--allow-unsupported-compiler")
  
-@@ -14,8 +11,6 @@ if (NOT APPLE)
+@@ -14,10 +11,6 @@ if (NOT APPLE)
    set(CMAKE_SHARED_LINKER_FLAGS -fuse-ld=lld)
  endif()
  
 -set(ENV{CC} clang)
 -set(ENV{CXX} clang++)
- set(ENV{NVCC_PREPEND_FLAGS} "--allow-unsupported-compiler -std=c++17")
- 
+-set(ENV{NVCC_PREPEND_FLAGS} "--allow-unsupported-compiler -std=c++17")
+-
  set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
+ set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
+ set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
 diff --git a/catboost/pytest/smoke_tests/classification_tutorial_cpu.py b/catboost/pytest/smoke_tests/classification_tutorial_cpu.py
 index 0d140f566c..3ff63efbf7 100644
 --- a/catboost/pytest/smoke_tests/classification_tutorial_cpu.py
