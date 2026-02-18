@@ -20,7 +20,7 @@ build:
   number: {{ build_num }}
   # We build from source on Unix and re-package binaries on windows
   #  Yandex supplies whl files on PyPI for:
-  # - Win-64: Python 3.8, 3.9, 3.10, 3.11, 3.12, 3.13
+  # - Win-64: Python 3.8, 3.9, 3.10, 3.11, 3.12, 3.13, 3.14
 
   # TODO: support Linux on ppc64le: https://github.com/catboost/catboost/issues/2145
   skip: true  # [ppc64le]
@@ -28,7 +28,6 @@ build:
   # just have a single version for now
   # TODO: build from source on Windows
   skip: true  # [win and cuda_compiler_version != "None"]
-  skip: true  # [win and py == 314]
   string: cuda{{ cuda_compiler_version | replace('.', '') }}_py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [unix and cuda_compiler_version != "None"]
   string: cpu_py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}  # [unix and cuda_compiler_version == "None"]
   # de-prioritize the CPU variants
