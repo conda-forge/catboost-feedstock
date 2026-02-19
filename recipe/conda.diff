@@ -1,8 +1,8 @@
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index 93f044a17e..44a625b092 100644
+index 93f044a17e..409dd86785 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -19,6 +19,17 @@ endif()
+@@ -19,6 +19,16 @@ endif()
  
  project(CATBOOST LANGUAGES C CXX ASM)
  
@@ -12,7 +12,6 @@ index 93f044a17e..44a625b092 100644
 +# See https://github.com/conan-io/conan-center-index/issues/952
 +# This patch is needed to reconcile the difference.
 +find_package(OpenSSL REQUIRED)
-+include_directories(${OPENSSL_INCLUDE_DIR})
 +add_library(LinkOpenSSL INTERFACE)
 +target_link_libraries(LinkOpenSSL INTERFACE OpenSSL::SSL OpenSSL::Crypto)
 +add_library(openssl::openssl ALIAS LinkOpenSSL)
@@ -21,7 +20,7 @@ index 93f044a17e..44a625b092 100644
  set(CMAKE_CXX_STANDARD 20)
  set(CMAKE_CXX_EXTENSIONS Off)
 diff --git a/build/toolchains/clang.toolchain b/build/toolchains/clang.toolchain
-index 7cb81ff061..a2fb977b04 100644
+index c5a3fe750e..a2fb977b04 100644
 --- a/build/toolchains/clang.toolchain
 +++ b/build/toolchains/clang.toolchain
 @@ -1,11 +1,8 @@
@@ -36,12 +35,13 @@ index 7cb81ff061..a2fb977b04 100644
  
  set(CMAKE_CUDA_FLAGS_INIT "--allow-unsupported-compiler")
  
-@@ -14,9 +11,6 @@ if (NOT APPLE)
+@@ -14,10 +11,6 @@ if (NOT APPLE)
    set(CMAKE_SHARED_LINKER_FLAGS -fuse-ld=lld)
  endif()
  
 -set(ENV{CC} clang)
 -set(ENV{CXX} clang++)
+-set(ENV{NVCC_PREPEND_FLAGS} "--allow-unsupported-compiler -std=c++17")
 -
  set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
  set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
@@ -84,30 +84,29 @@ index 0d140f566c..3ff63efbf7 100644
  
  
 diff --git a/catboost/python-package/pyproject.toml b/catboost/python-package/pyproject.toml
-index e864b0738d..d49f6f20d6 100644
+index 588bf56b9d..2d46df10a4 100644
 --- a/catboost/python-package/pyproject.toml
 +++ b/catboost/python-package/pyproject.toml
-@@ -1,10 +1,8 @@
- [build-system]
+@@ -2,9 +2,7 @@
+ build-backend = "setuptools.build_meta"
  requires = [
-     "setuptools >= 64.0",
--    "cmake",
-     "wheel",
+     "setuptools (>=70.1.0, <83.0)",
+-    "cmake (>=3.24, <4.0)",
      "jupyterlab (>=3.0.6, <3.6.0)",
--    "conan ~= 2.4.1",
+-    "conan (>=2.4.1, <3.0)",
      "cython ~= 3.0.10",
-     "numpy"
+     "numpy < 3.0"
  ]
 diff --git a/catboost/python-package/setup.py b/catboost/python-package/setup.py
-index 0cef47c1ab..6cb1ee6c3b 100644
+index b4c1890b24..9ac885047b 100644
 --- a/catboost/python-package/setup.py
 +++ b/catboost/python-package/setup.py
-@@ -95,7 +95,7 @@ def setup_hnsw_submodule(argv, extensions):
+@@ -124,7 +124,7 @@ def setup_hnsw_submodule(argv, extensions):
  
  
  def get_setup_requires(argv):
--    setup_requires = ['cmake', 'wheel', 'conan ~= 2.4.1', 'cython ~= 3.0.10', 'numpy']
-+    setup_requires = ['wheel', 'cython ~= 3.0.10', 'numpy']
+-    setup_requires = ['cmake (>=3.24, <4.0)', 'conan (>=2.4.1, <3.0)', 'cython ~= 3.0.10', 'numpy < 3.0']
++    setup_requires = ['cython ~= 3.0.10', 'numpy < 3.0']
  
      if ('build_widget' in argv) or (not ('--no-widget' in argv)):
          setup_requires += ['jupyterlab (>=3.0.6, <3.6.0)']
@@ -220,10 +219,10 @@ index a660fcaeda..871123ae20 100644
 +
 +
 diff --git a/contrib/libs/cxxsupp/builtins/CMakeLists.linux-aarch64-cuda.txt b/contrib/libs/cxxsupp/builtins/CMakeLists.linux-aarch64-cuda.txt
-index fd3c4bf84f..fd7ce4608d 100644
+index 896ef42d3e..db7f92127e 100644
 --- a/contrib/libs/cxxsupp/builtins/CMakeLists.linux-aarch64-cuda.txt
 +++ b/contrib/libs/cxxsupp/builtins/CMakeLists.linux-aarch64-cuda.txt
-@@ -24,16 +24,6 @@ target_link_libraries(libs-cxxsupp-builtins PUBLIC
+@@ -24,15 +24,7 @@ target_link_libraries(libs-cxxsupp-builtins PUBLIC
  )
  
  target_sources(libs-cxxsupp-builtins PRIVATE
@@ -233,26 +232,26 @@ index fd3c4bf84f..fd7ce4608d 100644
 -  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/truncsfbf2.c
 -  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/trunctfbf2.c
 -  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/aarch64/chkstk.S
--  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/aarch64/fp_mode.c
+   ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/aarch64/fp_mode.c
 -  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/aarch64/sme-abi-assert.c
 -  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/aarch64/sme-abi.S
--  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/aarch64/sme-libc-mem-routines.S
    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/absvdi2.c
    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/absvsi2.c
    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/absvti2.c
-@@ -185,7 +175,6 @@ target_sources(libs-cxxsupp-builtins PRIVATE
+@@ -185,8 +177,6 @@ target_sources(libs-cxxsupp-builtins PRIVATE
    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/umoddi3.c
    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/umodsi3.c
    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/umodti3.c
--  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/aarch64/sme-libc-routines.c
+-  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/aarch64/sme-libc-opt-memcpy-memmove.S
+-  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/aarch64/sme-libc-opt-memset-memchr.S
    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/crtbegin.c
    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/crtend.c
  )
 diff --git a/contrib/libs/cxxsupp/builtins/CMakeLists.linux-aarch64.txt b/contrib/libs/cxxsupp/builtins/CMakeLists.linux-aarch64.txt
-index fd3c4bf84f..fd7ce4608d 100644
+index 896ef42d3e..db7f92127e 100644
 --- a/contrib/libs/cxxsupp/builtins/CMakeLists.linux-aarch64.txt
 +++ b/contrib/libs/cxxsupp/builtins/CMakeLists.linux-aarch64.txt
-@@ -24,16 +24,6 @@ target_link_libraries(libs-cxxsupp-builtins PUBLIC
+@@ -24,15 +24,7 @@ target_link_libraries(libs-cxxsupp-builtins PUBLIC
  )
  
  target_sources(libs-cxxsupp-builtins PRIVATE
@@ -262,18 +261,310 @@ index fd3c4bf84f..fd7ce4608d 100644
 -  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/truncsfbf2.c
 -  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/trunctfbf2.c
 -  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/aarch64/chkstk.S
--  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/aarch64/fp_mode.c
+   ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/aarch64/fp_mode.c
 -  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/aarch64/sme-abi-assert.c
 -  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/aarch64/sme-abi.S
--  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/aarch64/sme-libc-mem-routines.S
    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/absvdi2.c
    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/absvsi2.c
    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/absvti2.c
-@@ -185,7 +175,6 @@ target_sources(libs-cxxsupp-builtins PRIVATE
+@@ -185,8 +177,6 @@ target_sources(libs-cxxsupp-builtins PRIVATE
    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/umoddi3.c
    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/umodsi3.c
    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/umodti3.c
--  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/aarch64/sme-libc-routines.c
+-  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/aarch64/sme-libc-opt-memcpy-memmove.S
+-  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/aarch64/sme-libc-opt-memset-memchr.S
    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/crtbegin.c
    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/builtins/crtend.c
  )
+diff --git a/contrib/libs/cxxsupp/libcxxabi-parts/CMakeLists.linux-aarch64-cuda.txt b/contrib/libs/cxxsupp/libcxxabi-parts/CMakeLists.linux-aarch64-cuda.txt
+index 0b6df88fed..2d0fbb6635 100644
+--- a/contrib/libs/cxxsupp/libcxxabi-parts/CMakeLists.linux-aarch64-cuda.txt
++++ b/contrib/libs/cxxsupp/libcxxabi-parts/CMakeLists.linux-aarch64-cuda.txt
+@@ -28,10 +28,20 @@ target_compile_options(libs-cxxsupp-libcxxabi-parts PRIVATE
+ 
+ target_include_directories(libs-cxxsupp-libcxxabi-parts PRIVATE
+   ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxxabi/include
+-  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxx/include
+-  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxx
+ )
+ 
++if (CMAKE_CXX_COMPILER_VERSION VERSION_LESS 16)
++  target_include_directories(libs-cxxsupp-libcxxabi-parts PRIVATE
++    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxxcuda11/include
++    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxxcuda11
++  ) 
++else ()
++  target_include_directories(libs-cxxsupp-libcxxabi-parts PRIVATE
++    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxx/include
++    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxx
++  )
++endif()
++
+ target_link_libraries(libs-cxxsupp-libcxxabi-parts PUBLIC
+   contrib-libs-linux-headers
+ )
+diff --git a/contrib/libs/cxxsupp/libcxxabi-parts/CMakeLists.linux-aarch64.txt b/contrib/libs/cxxsupp/libcxxabi-parts/CMakeLists.linux-aarch64.txt
+index 0b6df88fed..2d0fbb6635 100644
+--- a/contrib/libs/cxxsupp/libcxxabi-parts/CMakeLists.linux-aarch64.txt
++++ b/contrib/libs/cxxsupp/libcxxabi-parts/CMakeLists.linux-aarch64.txt
+@@ -28,10 +28,20 @@ target_compile_options(libs-cxxsupp-libcxxabi-parts PRIVATE
+ 
+ target_include_directories(libs-cxxsupp-libcxxabi-parts PRIVATE
+   ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxxabi/include
+-  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxx/include
+-  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxx
+ )
+ 
++if (CMAKE_CXX_COMPILER_VERSION VERSION_LESS 16)
++  target_include_directories(libs-cxxsupp-libcxxabi-parts PRIVATE
++    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxxcuda11/include
++    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxxcuda11
++  ) 
++else ()
++  target_include_directories(libs-cxxsupp-libcxxabi-parts PRIVATE
++    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxx/include
++    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxx
++  )
++endif()
++
+ target_link_libraries(libs-cxxsupp-libcxxabi-parts PUBLIC
+   contrib-libs-linux-headers
+ )
+diff --git a/contrib/libs/cxxsupp/libcxxabi-parts/CMakeLists.linux-ppc64le-cuda.txt b/contrib/libs/cxxsupp/libcxxabi-parts/CMakeLists.linux-ppc64le-cuda.txt
+index 0b6df88fed..2d0fbb6635 100644
+--- a/contrib/libs/cxxsupp/libcxxabi-parts/CMakeLists.linux-ppc64le-cuda.txt
++++ b/contrib/libs/cxxsupp/libcxxabi-parts/CMakeLists.linux-ppc64le-cuda.txt
+@@ -28,10 +28,20 @@ target_compile_options(libs-cxxsupp-libcxxabi-parts PRIVATE
+ 
+ target_include_directories(libs-cxxsupp-libcxxabi-parts PRIVATE
+   ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxxabi/include
+-  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxx/include
+-  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxx
+ )
+ 
++if (CMAKE_CXX_COMPILER_VERSION VERSION_LESS 16)
++  target_include_directories(libs-cxxsupp-libcxxabi-parts PRIVATE
++    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxxcuda11/include
++    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxxcuda11
++  ) 
++else ()
++  target_include_directories(libs-cxxsupp-libcxxabi-parts PRIVATE
++    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxx/include
++    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxx
++  )
++endif()
++
+ target_link_libraries(libs-cxxsupp-libcxxabi-parts PUBLIC
+   contrib-libs-linux-headers
+ )
+diff --git a/contrib/libs/cxxsupp/libcxxabi-parts/CMakeLists.linux-ppc64le.txt b/contrib/libs/cxxsupp/libcxxabi-parts/CMakeLists.linux-ppc64le.txt
+index 0b6df88fed..2d0fbb6635 100644
+--- a/contrib/libs/cxxsupp/libcxxabi-parts/CMakeLists.linux-ppc64le.txt
++++ b/contrib/libs/cxxsupp/libcxxabi-parts/CMakeLists.linux-ppc64le.txt
+@@ -28,10 +28,20 @@ target_compile_options(libs-cxxsupp-libcxxabi-parts PRIVATE
+ 
+ target_include_directories(libs-cxxsupp-libcxxabi-parts PRIVATE
+   ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxxabi/include
+-  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxx/include
+-  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxx
+ )
+ 
++if (CMAKE_CXX_COMPILER_VERSION VERSION_LESS 16)
++  target_include_directories(libs-cxxsupp-libcxxabi-parts PRIVATE
++    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxxcuda11/include
++    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxxcuda11
++  ) 
++else ()
++  target_include_directories(libs-cxxsupp-libcxxabi-parts PRIVATE
++    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxx/include
++    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxx
++  )
++endif()
++
+ target_link_libraries(libs-cxxsupp-libcxxabi-parts PUBLIC
+   contrib-libs-linux-headers
+ )
+diff --git a/contrib/libs/cxxsupp/libcxxabi-parts/CMakeLists.linux-x86_64-cuda.txt b/contrib/libs/cxxsupp/libcxxabi-parts/CMakeLists.linux-x86_64-cuda.txt
+index 0b6df88fed..2d0fbb6635 100644
+--- a/contrib/libs/cxxsupp/libcxxabi-parts/CMakeLists.linux-x86_64-cuda.txt
++++ b/contrib/libs/cxxsupp/libcxxabi-parts/CMakeLists.linux-x86_64-cuda.txt
+@@ -28,10 +28,20 @@ target_compile_options(libs-cxxsupp-libcxxabi-parts PRIVATE
+ 
+ target_include_directories(libs-cxxsupp-libcxxabi-parts PRIVATE
+   ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxxabi/include
+-  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxx/include
+-  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxx
+ )
+ 
++if (CMAKE_CXX_COMPILER_VERSION VERSION_LESS 16)
++  target_include_directories(libs-cxxsupp-libcxxabi-parts PRIVATE
++    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxxcuda11/include
++    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxxcuda11
++  ) 
++else ()
++  target_include_directories(libs-cxxsupp-libcxxabi-parts PRIVATE
++    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxx/include
++    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxx
++  )
++endif()
++
+ target_link_libraries(libs-cxxsupp-libcxxabi-parts PUBLIC
+   contrib-libs-linux-headers
+ )
+diff --git a/contrib/libs/cxxsupp/libcxxabi-parts/CMakeLists.linux-x86_64.txt b/contrib/libs/cxxsupp/libcxxabi-parts/CMakeLists.linux-x86_64.txt
+index 0b6df88fed..2d0fbb6635 100644
+--- a/contrib/libs/cxxsupp/libcxxabi-parts/CMakeLists.linux-x86_64.txt
++++ b/contrib/libs/cxxsupp/libcxxabi-parts/CMakeLists.linux-x86_64.txt
+@@ -28,10 +28,20 @@ target_compile_options(libs-cxxsupp-libcxxabi-parts PRIVATE
+ 
+ target_include_directories(libs-cxxsupp-libcxxabi-parts PRIVATE
+   ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxxabi/include
+-  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxx/include
+-  ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxx
+ )
+ 
++if (CMAKE_CXX_COMPILER_VERSION VERSION_LESS 16)
++  target_include_directories(libs-cxxsupp-libcxxabi-parts PRIVATE
++    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxxcuda11/include
++    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxxcuda11
++  ) 
++else ()
++  target_include_directories(libs-cxxsupp-libcxxabi-parts PRIVATE
++    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxx/include
++    ${PROJECT_SOURCE_DIR}/contrib/libs/cxxsupp/libcxx
++  )
++endif()
++
+ target_link_libraries(libs-cxxsupp-libcxxabi-parts PUBLIC
+   contrib-libs-linux-headers
+ )
+diff --git a/contrib/libs/cxxsupp/libcxxabi/src/cxa_guard_impl.h b/contrib/libs/cxxsupp/libcxxabi/src/cxa_guard_impl.h
+index 22293cd7f8..5452716c28 100644
+--- a/contrib/libs/cxxsupp/libcxxabi/src/cxa_guard_impl.h
++++ b/contrib/libs/cxxsupp/libcxxabi/src/cxa_guard_impl.h
+@@ -58,7 +58,13 @@
+ #  endif
+ #endif
+ 
++#include "include/__config" // from libc++
++#if _LIBCPP_VERSION >= 210000
+ #include <__thread/support.h>
++#else
++#include <__threading_support>
++#endif
++
+ #include <cstdint>
+ #include <cstring>
+ #include <limits.h>
+diff --git a/contrib/libs/cxxsupp/libcxxabi/src/cxa_thread_atexit.cpp b/contrib/libs/cxxsupp/libcxxabi/src/cxa_thread_atexit.cpp
+index 68db047dbb..9d66f61fcb 100644
+--- a/contrib/libs/cxxsupp/libcxxabi/src/cxa_thread_atexit.cpp
++++ b/contrib/libs/cxxsupp/libcxxabi/src/cxa_thread_atexit.cpp
+@@ -8,7 +8,14 @@
+ 
+ #include "abort_message.h"
+ #include "cxxabi.h"
++
++#include "include/__config" // from libc++
++#if _LIBCPP_VERSION >= 210000
+ #include <__thread/support.h>
++#else
++#include <__threading_support>
++#endif
++
+ #ifndef _LIBCXXABI_HAS_NO_THREADS
+ #if defined(__ELF__) && defined(_LIBCXXABI_LINK_PTHREAD_LIB)
+ #pragma comment(lib, "pthread")
+diff --git a/contrib/libs/cxxsupp/libcxxabi/src/fallback_malloc.cpp b/contrib/libs/cxxsupp/libcxxabi/src/fallback_malloc.cpp
+index 75788fe9be..76af362ecd 100644
+--- a/contrib/libs/cxxsupp/libcxxabi/src/fallback_malloc.cpp
++++ b/contrib/libs/cxxsupp/libcxxabi/src/fallback_malloc.cpp
+@@ -9,7 +9,13 @@
+ #include "fallback_malloc.h"
+ #include "abort_message.h"
+ 
++#include "include/__config" // from libc++
++#if _LIBCPP_VERSION >= 210000
+ #include <__thread/support.h>
++#else
++#include <__threading_support>
++#endif
++
+ #ifndef _LIBCXXABI_HAS_NO_THREADS
+ #if defined(__ELF__) && defined(_LIBCXXABI_LINK_PTHREAD_LIB)
+ #pragma comment(lib, "pthread")
+diff --git a/contrib/libs/protoc/src/google/protobuf/compiler/java/context.h b/contrib/libs/protoc/src/google/protobuf/compiler/java/context.h
+index 57b994a8e3..ff03d28608 100644
+--- a/contrib/libs/protoc/src/google/protobuf/compiler/java/context.h
++++ b/contrib/libs/protoc/src/google/protobuf/compiler/java/context.h
+@@ -35,6 +35,7 @@
+ #include <vector>
+ 
+ #include "y_absl/container/flat_hash_map.h"
++#include "google/protobuf/compiler/java/field.h"
+ #include "google/protobuf/compiler/java/helpers.h"
+ #include "google/protobuf/compiler/java/options.h"
+ #include "google/protobuf/port.h"
+@@ -59,8 +60,6 @@ namespace protobuf {
+ namespace compiler {
+ namespace java {
+ 
+-struct FieldGeneratorInfo;
+-struct OneofGeneratorInfo;
+ // A context object holds the information that is shared among all code
+ // generators.
+ class Context {
+diff --git a/contrib/restricted/abseil-cpp-tstring/y_absl/container/internal/raw_hash_set.h b/contrib/restricted/abseil-cpp-tstring/y_absl/container/internal/raw_hash_set.h
+index bb750bc7f8..ac6e55e140 100644
+--- a/contrib/restricted/abseil-cpp-tstring/y_absl/container/internal/raw_hash_set.h
++++ b/contrib/restricted/abseil-cpp-tstring/y_absl/container/internal/raw_hash_set.h
+@@ -3026,13 +3026,13 @@ class raw_hash_set {
+   //   s.insert({"abc", 42});
+   std::pair<iterator, bool> insert(init_type&& value)
+       Y_ABSL_ATTRIBUTE_LIFETIME_BOUND
+-#if Y_ABSL_INTERNAL_CPLUSPLUS_LANG >= 202002L && (!defined(_MSC_VER) || defined(__clang__))
++#if Y_ABSL_INTERNAL_CPLUSPLUS_LANG >= 202002L && (defined(__clang__) && (__clang_major__ >= 16))
+     requires(!IsLifetimeBoundAssignmentFrom<init_type>::value)
+ #endif
+   {
+     return emplace(std::move(value));
+   }
+-#if Y_ABSL_INTERNAL_CPLUSPLUS_LANG >= 202002L && (!defined(_MSC_VER) || defined(__clang__))
++#if Y_ABSL_INTERNAL_CPLUSPLUS_LANG >= 202002L && (defined(__clang__) && (__clang_major__ >= 16))
+   std::pair<iterator, bool> insert(
+       init_type&& value Y_ABSL_INTERNAL_ATTRIBUTE_CAPTURED_BY(this))
+       Y_ABSL_ATTRIBUTE_LIFETIME_BOUND
+diff --git a/util/generic/ptr.h b/util/generic/ptr.h
+index 04cfe50a42..8e524925db 100644
+--- a/util/generic/ptr.h
++++ b/util/generic/ptr.h
+@@ -381,7 +381,7 @@ private:
+     T* T_;
+ };
+ 
+-template <typename T, typename... Args, class = std::enable_if_t<std::is_constructible_v<T, Args...>>>
++template <typename T, typename... Args>
+ [[nodiscard]] THolder<T> MakeHolder(Args&&... args) {
+     return THolder<T>(new T(std::forward<Args>(args)...));
+ }
+@@ -1029,17 +1029,17 @@ using TAtomicSharedPtr = TSharedPtr<T, TAtomicCounter, D>;
+ template <class T, class D = TDelete>
+ using TSimpleSharedPtr = TSharedPtr<T, TSimpleCounter, D>;
+ 
+-template <typename T, typename C, typename... Args, class = std::enable_if_t<std::is_constructible_v<T, Args...>>>
++template <typename T, typename C, typename... Args>
+ [[nodiscard]] TSharedPtr<T, C> MakeShared(Args&&... args) {
+     return new T{std::forward<Args>(args)...};
+ }
+ 
+-template <typename T, typename... Args, class = std::enable_if_t<std::is_constructible_v<T, Args...>>>
++template <typename T, typename... Args>
+ [[nodiscard]] inline TAtomicSharedPtr<T> MakeAtomicShared(Args&&... args) {
+     return MakeShared<T, TAtomicCounter>(std::forward<Args>(args)...);
+ }
+ 
+-template <typename T, typename... Args, class = std::enable_if_t<std::is_constructible_v<T, Args...>>>
++template <typename T, typename... Args>
+ [[nodiscard]] inline TSimpleSharedPtr<T> MakeSimpleShared(Args&&... args) {
+     return MakeShared<T, TSimpleCounter>(std::forward<Args>(args)...);
+ }
