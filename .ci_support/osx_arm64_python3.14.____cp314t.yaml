@@ -1,7 +1,11 @@
+MACOSX_DEPLOYMENT_TARGET:
+- '11.0'
+MACOSX_SDK_VERSION:
+- '11.0'
 c_stdlib:
-- sysroot
+- macosx_deployment_target
 c_stdlib_version:
-- '2.17'
+- '11.0'
 channel_sources:
 - conda-forge
 channel_targets:
@@ -11,11 +15,11 @@ cuda_compiler:
 cuda_compiler_version:
 - None
 cxx_compiler:
-- gxx
+- clangxx
 cxx_compiler_version:
-- '14'
-docker_image:
-- quay.io/condaforge/linux-anvil-x86_64:alma10
+- '19'
+macos_machine:
+- arm64-apple-darwin20.0.0
 openssl:
 - '3.5'
 pin_run_as_build:
@@ -23,10 +27,6 @@ pin_run_as_build:
     min_pin: x.x
     max_pin: x.x
 python:
-- 3.13.* *_cp313
+- 3.14.* *_cp314t
 target_platform:
-- linux-aarch64
-zip_keys:
-- - cxx_compiler_version
-  - c_stdlib_version
-  - cuda_compiler_version
+- osx-arm64
